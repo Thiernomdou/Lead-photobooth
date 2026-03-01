@@ -15,7 +15,7 @@
 
 import { useState, useMemo } from 'react'
 
-const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'
+const API_ENDPOINT = '/api/devis'
 
 // ─── Types ─────────────────────────────────────────────────────────────────
 
@@ -151,15 +151,10 @@ export default function QuoteForm() {
     setStatus('loading')
     setErrMsg('')
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const res = await fetch(API_ENDPOINT, {
         method:  'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body:    JSON.stringify({
-          ...s1, ...s2,
-          options:  s2.options.join(', ') || 'Aucune option sélectionnée',
-          ...s3,
-          _subject: `Devis photobooth — ${s1.eventType} — ${s3.prenom} ${s3.nom}`,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ ...s1, ...s2, ...s3 }),
       })
       if (!res.ok) throw new Error()
       setStatus('success')

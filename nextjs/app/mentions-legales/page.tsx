@@ -12,7 +12,7 @@ const EDITEUR = {
   siret:        '[À COMPLÉTER — 14 chiffres]',
   siege:        'Lyon (69000) — Auvergne-Rhône-Alpes, France',
   tel:          '06 65 42 07 93',
-  email:        'contact@location-photobooth.fr',
+  email:        'contact.kivio@gmail.com',
   directeur:    '[Prénom NOM du responsable]',
 }
 

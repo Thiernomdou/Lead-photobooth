@@ -110,7 +110,7 @@ export function localBusinessSchema() {
     description:   "Location de photobooth à Lyon pour mariages, anniversaires et événements d'entreprise. Technicien inclus, impressions illimitées, livraison sur toute la métropole lyonnaise.",
     url:           BASE,
     telephone:     '+33665420793',
-    email:         'contact@location-photobooth.fr',
+    email:         'contact.kivio@gmail.com',
     image: [
       `${BASE}/images/photobooth-lyon-mariage.jpg`,
       `${BASE}/images/photobooth-lyon-anniversaire.jpg`,
