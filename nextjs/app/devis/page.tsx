@@ -10,8 +10,8 @@ export const metadata: Metadata = buildMetadata({
 })
 
 const FORMULES = [
-  { name: 'Essentiel', price: 'À partir de 249 €', desc: '2h · Impressions illimitées · Animateur' },
-  { name: 'Premium',   price: 'À partir de 449 €', desc: '5h · Fond personnalisé · Props premium'  },
+  { name: 'Essentiel', price: 'Devis personnalisé', desc: '2h · Impressions illimitées · Animateur' },
+  { name: 'Premium',   price: 'Devis personnalisé', desc: '5h · Fond personnalisé · Props premium'  },
   { name: 'Corporate', price: 'Sur devis',          desc: 'Branding · Multi-jours · Collecte leads' },
 ]
 
@@ -85,9 +85,12 @@ export default function DevisPage() {
                     </div>
                   ))}
                 </div>
+                <p className="text-gray-500 text-xs mt-3 leading-relaxed">
+                  Tarif final selon votre date, durée et options — devis gratuit et sans engagement
+                </p>
                 <Link
                   href="/lyon/pas-cher/"
-                  className="inline-flex items-center gap-1 text-xs text-gold-500 hover:text-gold-400 transition-colors mt-3"
+                  className="inline-flex items-center gap-1 text-xs text-gold-500 hover:text-gold-400 transition-colors mt-2"
                 >
                   Voir le détail complet des tarifs →
                 </Link>

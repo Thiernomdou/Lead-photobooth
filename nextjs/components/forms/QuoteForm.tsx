@@ -23,7 +23,7 @@ type EventType  = 'Mariage' | 'Anniversaire' | 'Soirée entreprise' | 'Remise de
 type GuestCount = 'Moins de 50' | '50-100' | '100-200' | 'Plus de 200'
 type Duration   = '2h' | '3h' | '4h' | 'Soirée complète'
 type BoothModel = 'Borne Classique' | 'Borne Premium' | 'Vidéo 360°'
-type Budget     = 'Moins de 400€' | '400-600€' | '600-800€' | 'Plus de 800€' | 'Je ne sais pas encore'
+type Budget     = 'Je ne sais pas encore' | 'Moins de 500€' | '500-800€' | 'Plus de 800€'
 type Status     = 'idle' | 'loading' | 'success' | 'error'
 
 interface S1 { eventType: EventType | ''; date: string; venue: string; guestCount: GuestCount | ''; duration: Duration | '' }
@@ -40,10 +40,10 @@ const EVENT_TYPES: { label: EventType; emoji: string }[] = [
   { label: 'Autre',              emoji: '🎉' },
 ]
 
-const BOOTH_MODELS: { label: BoothModel; emoji: string; price: string; desc: string }[] = [
-  { label: 'Borne Classique', emoji: '📸', price: 'À partir de 350€', desc: 'Borne photo HD, impressions illimitées, fond inclus' },
-  { label: 'Borne Premium',   emoji: '✨', price: 'À partir de 450€', desc: 'Borne LED, GIFs animés, fond personnalisé, animateur dédié' },
-  { label: 'Vidéo 360°',      emoji: '🌀', price: 'À partir de 550€', desc: 'Vidéo booth 360° dernière génération, effets slow-motion' },
+const BOOTH_MODELS: { label: BoothModel; emoji: string; desc: string }[] = [
+  { label: 'Borne Classique', emoji: '📸', desc: 'Borne photo HD, impressions illimitées, fond inclus' },
+  { label: 'Borne Premium',   emoji: '✨', desc: 'Borne LED, GIFs animés, fond personnalisé, animateur dédié' },
+  { label: 'Vidéo 360°',      emoji: '🌀', desc: 'Vidéo booth 360° dernière génération, effets slow-motion' },
 ]
 
 const OPTIONS_LIST: { label: string; extra: string }[] = [
@@ -54,7 +54,7 @@ const OPTIONS_LIST: { label: string; extra: string }[] = [
   { label: 'Partage réseaux sociaux',        extra: 'inclus'  },
 ]
 
-const BUDGETS: Budget[]      = ['Moins de 400€', '400-600€', '600-800€', 'Plus de 800€', 'Je ne sais pas encore']
+const BUDGETS: Budget[]      = ['Je ne sais pas encore', 'Moins de 500€', '500-800€', 'Plus de 800€']
 const GUEST_COUNTS: GuestCount[] = ['Moins de 50', '50-100', '100-200', 'Plus de 200']
 const DURATIONS: Duration[]   = ['2h', '3h', '4h', 'Soirée complète']
 const SOURCES                 = ['Google', "Recommandation d'un proche", 'Réseaux sociaux', 'Autre']
@@ -173,17 +173,42 @@ export default function QuoteForm() {
 
   if (status === 'success') {
     return (
-      <div className="text-center py-16 px-6">
-        <div className="inline-flex items-center justify-center w-20 h-20 bg-gold-400/10 mb-6">
-          <svg className="w-10 h-10 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+      <div className="py-12 px-4">
+        {/* Check vert */}
+        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-50 border-2 border-green-200 mb-6 mx-auto">
+          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3">Merci !</h3>
-        <p className="text-gray-600 max-w-md mx-auto leading-relaxed">
-          Votre demande a bien été reçue. Notre équipe vous contacte sous 24h
-          pour finaliser votre devis personnalisé.
+
+        <h3 className="text-2xl font-serif font-bold text-gray-900 text-center mb-4">
+          Votre demande a bien été reçue ✓
+        </h3>
+
+        <p className="text-gray-600 text-center leading-relaxed mb-2">
+          Merci {s3.prenom}&nbsp;! Votre devis personnalisé est en cours de préparation.
         </p>
+        <p className="text-gray-600 text-center leading-relaxed mb-8">
+          Vous le recevrez sous 24h à{' '}
+          <span className="font-medium text-gray-900">{s3.email}</span>.
+          Notre équipe peut aussi vous rappeler directement si vous préférez.
+        </p>
+
+        <div className="border-t border-gray-100 pt-8">
+          <a
+            href="tel:+33665420793"
+            className="btn-primary w-full justify-center text-base"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Recevoir un appel rapidement → 06 65 42 07 93
+          </a>
+          <p className="text-center text-xs text-gray-400 mt-3">
+            Du lundi au samedi, 9h–19h
+          </p>
+        </div>
       </div>
     )
   }
@@ -304,7 +329,7 @@ export default function QuoteForm() {
               Modèle de photobooth <span className="text-gold-400">*</span>
             </p>
             <div className="space-y-3">
-              {BOOTH_MODELS.map(({ label, emoji, price, desc }) => (
+              {BOOTH_MODELS.map(({ label, emoji, desc }) => (
                 <button
                   key={label} type="button"
                   onClick={() => setS2(p => ({ ...p, model: label }))}
@@ -313,13 +338,10 @@ export default function QuoteForm() {
                   }`}
                 >
                   <span className="text-3xl shrink-0" aria-hidden>{emoji}</span>
-                  <div className="flex-1 min-w-0">
+                  <div className="min-w-0">
                     <p className="font-semibold text-gray-900 text-sm">{label}</p>
                     <p className="text-xs text-gray-500 mt-0.5 leading-snug">{desc}</p>
                   </div>
-                  <span className={`text-sm font-bold shrink-0 ${s2.model === label ? 'text-gold-600' : 'text-gray-500'}`}>
-                    {price}
-                  </span>
                 </button>
               ))}
             </div>
@@ -341,7 +363,9 @@ export default function QuoteForm() {
                     className="w-4 h-4 accent-amber-500 shrink-0"
                   />
                   <span className="text-sm text-gray-700 flex-1">{label}</span>
-                  <span className="text-xs font-semibold text-gold-600 shrink-0">{extra}</span>
+                  {extra === 'inclus' && (
+                    <span className="text-xs font-semibold text-green-600 shrink-0">inclus</span>
+                  )}
                 </label>
               ))}
             </div>
@@ -350,7 +374,7 @@ export default function QuoteForm() {
           {/* Budget */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-              Budget global estimé <span className="text-gold-400">*</span>
+              Votre budget approximatif <span className="text-gold-400">*</span>
             </label>
             <select
               value={s2.budget}
@@ -406,11 +430,6 @@ export default function QuoteForm() {
             <p className="text-gray-700">
               <span className="font-medium">Formule :</span> {s2.model || '—'}
             </p>
-            {s2.budget && (
-              <p className="text-gray-700">
-                <span className="font-medium">Budget :</span> {s2.budget}
-              </p>
-            )}
           </div>
 
           {/* Prénom + Nom */}
