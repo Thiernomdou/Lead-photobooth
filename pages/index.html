@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ═══════════════════════════════════════════
+       BALISES SEO PRIMAIRES
+  ═══════════════════════════════════════════ -->
+  <title>Location Photobooth France — Animation Photo pour vos Événements</title>
+  <meta name="description" content="Louez un photobooth pour mariage, anniversaire ou événement d'entreprise. Livraison dans toute la France. Devis gratuit en 24h ✓" />
+  <link rel="canonical" href="https://location-photobooth.fr/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="Location Photobooth France — Animation Photo pour vos Événements" />
+  <meta property="og:description" content="Louez un photobooth pour mariage, anniversaire ou événement d'entreprise. Livraison dans toute la France. Devis gratuit en 24h ✓" />
+  <meta property="og:url"         content="https://location-photobooth.fr/" />
+  <meta property="og:image"       content="https://location-photobooth.fr/images/photobooth-france-og.jpg" />
+  <meta property="og:locale"      content="fr_FR" />
+  <meta property="og:site_name"   content="Location Photobooth France" />
+
+  <!-- ═══════════════════════════════════════════
+       SCHEMA.ORG JSON-LD
+  ═══════════════════════════════════════════ -->
+
+  <!-- 1. Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://location-photobooth.fr/#organization",
+    "name": "Location Photobooth France",
+    "url": "https://location-photobooth.fr",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://location-photobooth.fr/images/logo.png",
+      "width": 300,
+      "height": 80
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+33665420793",
+      "contactType": "customer service",
+      "availableLanguage": "French",
+      "areaServed": "FR"
+    },
+    "sameAs": [
+      "https://www.instagram.com/location.photobooth.france",
+      "https://www.facebook.com/locationphotoboothfrance"
+    ]
+  }
+  </script>
+
+  <!-- 2. WebSite (active SearchAction pour Sitelinks Searchbox) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://location-photobooth.fr/#website",
+    "url": "https://location-photobooth.fr",
+    "name": "Location Photobooth France",
+    "description": "Location de photobooth partout en France pour mariages, anniversaires et événements d'entreprise.",
+    "publisher": {
+      "@id": "https://location-photobooth.fr/#organization"
+    },
+    "inLanguage": "fr-FR"
+  }
+  </script>
+
+  <!-- 3. SiteNavigationElement -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SiteLinksSearchBox",
+    "url": "https://location-photobooth.fr",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://location-photobooth.fr/?s={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <!-- ═══════════════════════════════════════════
+       STYLES
+  ═══════════════════════════════════════════ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+
+  <style>
+    /* ── Reset & base ───────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --gold:       #C9A84C;
+      --gold-light: #E8D090;
+      --gold-dark:  #A07830;
+      --black:      #0A0A0A;
+      --dark:       #1C1C1E;
+      --gray-100:   #F5F5F0;
+      --gray-200:   #E8E8E3;
+      --gray-600:   #6B6B65;
+      --gray-900:   #1A1A18;
+    }
+    html  { scroll-behavior: smooth; font-size: 16px; }
+    body  { font-family: 'Inter', system-ui, sans-serif; color: var(--gray-900); background: #fff; line-height: 1.6; }
+    h1,h2,h3,h4 { font-family: 'Playfair Display', Georgia, serif; line-height: 1.2; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+
+    /* ── Utilitaires ───────────────────────── */
+    .container    { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .section      { padding: 5rem 0; }
+    .section--dark { background: var(--black); color: #fff; }
+    .section--gray { background: var(--gray-100); }
+    .label        { display: inline-block; font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .75rem; }
+    .section-title { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 1rem; }
+    .section-sub  { font-size: 1.1rem; color: var(--gray-600); max-width: 600px; }
+
+    .btn-gold     { display: inline-flex; align-items: center; gap: .5rem; background: var(--gold); color: #000; font-weight: 600; font-size: .9rem; padding: 1rem 2rem; border: 2px solid var(--gold); transition: all .2s; cursor: pointer; text-decoration: none; }
+    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(201,168,76,.3); }
+    .btn-outline  { display: inline-flex; align-items: center; gap: .5rem; background: transparent; color: var(--gold); font-weight: 600; font-size: .9rem; padding: 1rem 2rem; border: 2px solid var(--gold); transition: all .2s; text-decoration: none; }
+    .btn-outline:hover { background: var(--gold); color: #000; }
+    .btn-outline--white { color: #fff; border-color: rgba(255,255,255,.4); }
+    .btn-outline--white:hover { background: #fff; color: var(--black); border-color: #fff; }
+
+    /* ── Nav ──────────────────────────────── */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1.25rem 0; transition: background .3s, box-shadow .3s; }
+    .nav.scrolled { background: #fff; box-shadow: 0 2px 20px rgba(0,0,0,.08); }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; }
+    .nav__logo  { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: #fff; }
+    .nav.scrolled .nav__logo { color: var(--black); }
+    .nav__logo span { color: var(--gold); }
+    .nav__logo small { font-family: 'Inter', sans-serif; font-size: .75rem; font-weight: 400; color: rgba(255,255,255,.5); margin-left: .25rem; }
+    .nav.scrolled .nav__logo small { color: #999; }
+    .nav__links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav__links a { font-size: .9rem; font-weight: 500; color: rgba(255,255,255,.8); transition: color .2s; }
+    .nav.scrolled .nav__links a { color: #555; }
+    .nav__links a:hover { color: var(--gold); }
+    .nav__cta { background: var(--gold); color: #000 !important; font-weight: 600 !important; padding: .6rem 1.5rem; font-size: .85rem !important; }
+    .nav__cta:hover { background: var(--gold-dark) !important; }
+    .nav__burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: .5rem; }
+    .nav__burger span { display: block; width: 24px; height: 2px; background: #fff; transition: all .3s; }
+    .nav.scrolled .nav__burger span { background: var(--black); }
+    .nav__mobile { display: none; background: #fff; border-top: 1px solid var(--gray-200); padding: 1rem 1.5rem; }
+    .nav__mobile.open { display: block; }
+    .nav__mobile a { display: block; padding: .75rem 0; font-weight: 500; color: var(--gray-900); border-bottom: 1px solid var(--gray-200); }
+    .nav__mobile a:last-child { border: none; }
+    .nav__mobile a:hover { color: var(--gold); }
+    @media (max-width: 768px) {
+      .nav__links { display: none; }
+      .nav__burger { display: flex; }
+    }
+
+    /* ── Hero ─────────────────────────────── */
+    .hero { position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center; background: var(--black); overflow: hidden; }
+    .hero__bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 40%, rgba(201,168,76,.08) 0%, transparent 60%), radial-gradient(ellipse at 70% 70%, rgba(201,168,76,.05) 0%, transparent 60%); }
+    .hero__content { position: relative; z-index: 2; text-align: center; max-width: 860px; padding: 0 1.5rem; }
+    .hero__badge { display: inline-flex; align-items: center; gap: .5rem; background: rgba(201,168,76,.1); border: 1px solid rgba(201,168,76,.3); padding: .5rem 1.25rem; margin-bottom: 2rem; }
+    .hero__badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+    .hero__badge span { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+    .hero__h1 { font-size: clamp(2.5rem, 7vw, 4.5rem); color: #fff; margin-bottom: 1.5rem; }
+    .hero__h1 em { font-style: normal; color: var(--gold); }
+    .hero__desc { font-size: 1.2rem; color: rgba(255,255,255,.7); max-width: 580px; margin: 0 auto 1rem; }
+    .hero__trust { font-size: .85rem; color: rgba(255,255,255,.4); margin-bottom: 2.5rem; letter-spacing: .03em; }
+    .hero__ctas  { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero__stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 420px; margin: 4rem auto 0; border-top: 1px solid rgba(255,255,255,.08); padding-top: 3rem; }
+    .hero__stat-val  { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold); }
+    .hero__stat-label { font-size: .7rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-top: .25rem; }
+    .hero__scroll { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; }
+    .hero__scroll svg { color: var(--gold); opacity: .5; }
+    @keyframes pulse  { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* ── Pourquoi nous ────────────────────── */
+    .why { padding: 6rem 0; }
+    .why__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .why__card { padding: 2rem; border: 1px solid var(--gray-200); transition: all .3s; }
+    .why__card:hover { border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,.06); }
+    .why__icon { font-size: 2rem; margin-bottom: 1rem; }
+    .why__title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: .5rem; }
+    .why__text  { font-size: .9rem; color: var(--gray-600); line-height: 1.7; }
+
+    /* ── Villes ───────────────────────────── */
+    .villes { padding: 6rem 0; background: var(--gray-100); }
+    .villes__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .ville-card { position: relative; background: #fff; border: 2px solid var(--gray-200); padding: 2.5rem 2rem; transition: all .3s; }
+    .ville-card--active { border-color: var(--gold); }
+    .ville-card--active:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(201,168,76,.15); }
+    .ville-card__badge { position: absolute; top: -12px; left: 1.5rem; font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: .3rem .8rem; }
+    .ville-card__badge--live    { background: var(--gold); color: #000; }
+    .ville-card__badge--soon    { background: var(--gray-200); color: var(--gray-600); }
+    .ville-card__city { font-family: 'Playfair Display', serif; font-size: 1.75rem; font-weight: 700; margin-bottom: .5rem; }
+    .ville-card--active .ville-card__city { color: var(--black); }
+    .ville-card:not(.ville-card--active) .ville-card__city { color: #bbb; }
+    .ville-card__desc { font-size: .9rem; color: var(--gray-600); margin-bottom: 1.5rem; line-height: 1.7; }
+    .ville-card:not(.ville-card--active) .ville-card__desc { color: #ccc; }
+    .ville-card__link { font-size: .85rem; font-weight: 600; color: var(--gold); letter-spacing: .03em; }
+    .ville-card__link:hover { text-decoration: underline; }
+    .ville-card:not(.ville-card--active) .ville-card__link { color: #bbb; cursor: default; }
+    .ville-card__features { list-style: none; margin-bottom: 1.5rem; }
+    .ville-card__features li { font-size: .85rem; color: var(--gray-600); padding: .25rem 0; display: flex; align-items: center; gap: .5rem; }
+    .ville-card__features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+    .ville-card:not(.ville-card--active) .ville-card__features li { color: #ccc; }
+    .ville-card:not(.ville-card--active) .ville-card__features li::before { color: #ddd; }
+
+    /* ── Formules ─────────────────────────── */
+    .formules { padding: 6rem 0; }
+    .formules__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    .formule-card { border: 1px solid var(--gray-200); padding: 2.5rem 2rem; position: relative; transition: all .3s; display: flex; flex-direction: column; }
+    .formule-card:hover { border-color: var(--gold); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .formule-card__emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+    .formule-card__title { font-family: 'Playfair Display', serif; font-size: 1.3rem; margin-bottom: .25rem; }
+    .formule-card__subtitle { font-size: .85rem; color: var(--gold-dark); font-weight: 500; margin-bottom: 1rem; }
+    .formule-card__desc  { font-size: .9rem; color: var(--gray-600); line-height: 1.7; margin-bottom: 1.5rem; flex: 1; }
+    .formule-card__cta   { margin-top: auto; }
+
+    /* ── Comment ça marche ────────────────── */
+    .comment { padding: 6rem 0; background: var(--black); }
+    .comment__steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; margin-top: 3.5rem; position: relative; }
+    .comment__steps::before { content: ''; position: absolute; top: 2.5rem; left: 0; right: 0; height: 1px; background: rgba(201,168,76,.2); z-index: 0; }
+    .step { position: relative; z-index: 1; text-align: center; }
+    .step__num { width: 3.5rem; height: 3.5rem; border: 2px solid var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; background: var(--black); }
+    .step__num span { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--gold); }
+    .step__title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff; margin-bottom: .5rem; }
+    .step__text  { font-size: .9rem; color: rgba(255,255,255,.5); line-height: 1.7; }
+
+    /* ── Témoignages ──────────────────────── */
+    .temoignages { padding: 6rem 0; background: var(--gray-100); }
+    .temoignages__stars { display: flex; align-items: center; justify-content: center; gap: .25rem; margin-top: .75rem; }
+    .star { color: var(--gold); font-size: 1.25rem; }
+    .temoignages__note { font-size: 1rem; color: var(--gray-600); margin-left: .5rem; }
+    .temoignages__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+    .temoignage { background: #fff; border: 1px solid var(--gray-200); padding: 2rem; position: relative; }
+    .temoignage__quote { position: absolute; top: 1rem; right: 1.5rem; font-family: 'Playfair Display', serif; font-size: 4rem; color: rgba(201,168,76,.12); line-height: 1; user-select: none; }
+    .temoignage__stars { display: flex; gap: 2px; margin-bottom: 1rem; }
+    .temoignage__text  { font-size: .95rem; color: var(--gray-600); line-height: 1.75; margin-bottom: 1.25rem; font-style: italic; }
+    .temoignage__author { display: flex; align-items: center; gap: .75rem; }
+    .temoignage__avatar { width: 40px; height: 40px; background: var(--gold); color: #000; font-weight: 700; font-size: .9rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .temoignage__name  { font-weight: 600; font-size: .9rem; }
+    .temoignage__event { font-size: .8rem; color: var(--gray-600); }
+
+    /* ── CTA final ────────────────────────── */
+    .cta-final { padding: 6rem 0; background: var(--black); text-align: center; }
+    .cta-final h2 { font-size: clamp(1.8rem, 4vw, 2.75rem); color: #fff; margin-bottom: 1rem; }
+    .cta-final p  { color: rgba(255,255,255,.6); font-size: 1.1rem; max-width: 500px; margin: 0 auto 2.5rem; }
+    .cta-final__ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .cta-final__trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; margin-top: 3rem; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .trust-item { display: flex; align-items: center; gap: .5rem; color: rgba(255,255,255,.5); font-size: .85rem; }
+    .trust-item span:first-child { font-size: 1.25rem; }
+
+    /* ── Footer ───────────────────────────── */
+    .footer { background: var(--dark); color: rgba(255,255,255,.6); padding: 3.5rem 0 2rem; }
+    .footer__grid { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 3rem; margin-bottom: 3rem; }
+    .footer__brand { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: .75rem; }
+    .footer__brand span { color: var(--gold); }
+    .footer__brand small { font-family: 'Inter', sans-serif; font-size: .7rem; font-weight: 400; color: #666; margin-left: .25rem; }
+    .footer__tagline { font-size: .85rem; line-height: 1.7; margin-bottom: 1rem; }
+    .footer__stars { display: flex; align-items: center; gap: .25rem; }
+    .footer__stars .star { font-size: .9rem; }
+    .footer__stars-note { font-size: .8rem; margin-left: .25rem; }
+    .footer__title { font-family: 'Inter', sans-serif; font-size: .85rem; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 1rem; }
+    .footer__list { list-style: none; }
+    .footer__list li { margin-bottom: .5rem; }
+    .footer__list a { font-size: .85rem; color: rgba(255,255,255,.5); transition: color .2s; }
+    .footer__list a:hover { color: var(--gold); }
+    .footer__contact li { display: flex; gap: .5rem; margin-bottom: .75rem; font-size: .85rem; align-items: flex-start; }
+    .footer__contact-icon { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+    .footer__bottom { border-top: 1px solid rgba(255,255,255,.06); padding-top: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; font-size: .8rem; }
+    .footer__legal { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer__legal a { color: rgba(255,255,255,.35); transition: color .2s; }
+    .footer__legal a:hover { color: var(--gold); }
+    @media (max-width: 900px) {
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .footer__grid { grid-template-columns: 1fr; }
+      .hero__stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+      .hero__h1 { font-size: 2.2rem; }
+      .comment__steps::before { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════════════ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Navigation principale">
+    <div class="container">
+      <div class="nav__inner">
+        <a href="/" class="nav__logo" aria-label="Location Photobooth France — Accueil">
+          Photo<span>Booth</span><small>France</small>
+        </a>
+        <ul class="nav__links" role="list">
+          <li><a href="#villes">Villes</a></li>
+          <li><a href="#formules">Formules</a></li>
+          <li><a href="#comment">Comment ça marche</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="/lyon/" class="nav__cta">Devis gratuit Lyon</a></li>
+        </ul>
+        <button class="nav__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav__mobile" id="mobileMenu" role="menu">
+      <a href="#villes"   role="menuitem">Nos villes</a>
+      <a href="#formules" role="menuitem">Formules</a>
+      <a href="#comment"  role="menuitem">Comment ça marche</a>
+      <a href="#avis"     role="menuitem">Avis clients</a>
+      <a href="/lyon/"    role="menuitem" style="color:var(--gold);font-weight:600;">→ Lyon — Devis gratuit</a>
+    </div>
+  </nav>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════════ -->
+  <section class="hero" aria-label="Présentation">
+    <div class="hero__bg" aria-hidden="true"></div>
+
+    <div class="hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot"></span>
+        <span>Disponible à Lyon · Paris · Marseille · Bordeaux</span>
+      </div>
+
+      <h1 class="hero__h1">
+        Location <em>Photobooth</em><br>France — Animez<br>tous vos événements
+      </h1>
+
+      <p class="hero__desc">
+        L'animation photo qui fait l'unanimité depuis 2019. Mariage, anniversaire, soirée d'entreprise — nous livrons, installons et animons partout en France.
+      </p>
+
+      <p class="hero__trust">
+        ✓ Livraison &amp; installation incluses &nbsp;·&nbsp;
+        ✓ Animateur dédié &nbsp;·&nbsp;
+        ✓ Photos illimitées &nbsp;·&nbsp;
+        ✓ Devis gratuit en 24h
+      </p>
+
+      <div class="hero__ctas">
+        <a href="/lyon/" class="btn-gold">Découvrir Lyon</a>
+        <a href="#villes" class="btn-outline btn-outline--white">Toutes les villes</a>
+      </div>
+
+      <div class="hero__stats" aria-label="Chiffres clés">
+        <div>
+          <p class="hero__stat-val">+300</p>
+          <p class="hero__stat-label">événements</p>
+        </div>
+        <div>
+          <p class="hero__stat-val">4.9★</p>
+          <p class="hero__stat-label">127 avis</p>
+        </div>
+        <div>
+          <p class="hero__stat-val">24h</p>
+          <p class="hero__stat-label">de réponse</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       POURQUOI NOUS
+  ══════════════════════════════════════════════════════════ -->
+  <section class="why section" id="pourquoi">
+    <div class="container">
+      <div style="max-width:640px;">
+        <span class="label">Notre différence</span>
+        <h2 class="section-title">Pourquoi choisir notre service de location photobooth&nbsp;?</h2>
+        <p class="section-sub">
+          Des centaines d'événements animés, un seul objectif : que vos invités repartent avec un souvenir imprimé entre les mains et un sourire inoubliable.
+        </p>
+      </div>
+
+      <div class="why__grid">
+        <article class="why__card">
+          <div class="why__icon" aria-hidden="true">📸</div>
+          <h3 class="why__title">Matériel professionnel</h3>
+          <p class="why__text">Appareil reflex ou mirrorless, éclairage studio LED, imprimante sublimation thermique. Qualité photo professionnelle, pas de webcam bas de gamme.</p>
+        </article>
+
+        <article class="why__card">
+          <div class="why__icon" aria-hidden="true">🎨</div>
+          <h3 class="why__title">Personnalisation totale</h3>
+          <p class="why__text">Cadre photo, bandeau, fond, props — tout est adapté à votre thème, vos couleurs, votre logo. Bon à tirer validé avec vous avant l'événement.</p>
+        </article>
+
+        <article class="why__card">
+          <div class="why__icon" aria-hidden="true">👤</div>
+          <h3 class="why__title">Animateur dédié inclus</h3>
+          <p class="why__text">Un professionnel souriant est présent du début à la fin. Il installe, anime, veille au bon déroulement et range. Vous profitez, lui gère.</p>
+        </article>
+
+        <article class="why__card">
+          <div class="why__icon" aria-hidden="true">⚡</div>
+          <h3 class="why__title">Impression instantanée</h3>
+          <p class="why__text">Chaque photo imprimée en 10 secondes chrono. Format 10×15 cm ou bande de 3 photos. Encre sublimation résistante à l'eau — souvenir pour 20 ans.</p>
+        </article>
+
+        <article class="why__card">
+          <div class="why__icon" aria-hidden="true">📱</div>
+          <h3 class="why__title">Partage numérique</h3>
+          <p class="why__text">QR code sur chaque impression pour télécharger la photo HD immédiatement. Galerie en ligne partageable avec tous les invités pendant 30 à 60 jours.</p>
+        </article>
+
+        <article class="why__card">
+          <div class="why__icon" aria-hidden="true">🔒</div>
+          <h3 class="why__title">Zéro mauvaise surprise</h3>
+          <p class="why__text">Contrat clair, tarifs transparents, pas de frais cachés. Acompte de 30 % à la réservation, solde 7 jours avant. Annulation flexible.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       VILLES D'INTERVENTION
+  ══════════════════════════════════════════════════════════ -->
+  <section class="villes" id="villes">
+    <div class="container">
+      <span class="label">Nos zones d'intervention</span>
+      <h2 class="section-title">Location photobooth partout en France</h2>
+      <p class="section-sub">
+        Nous déployons notre service ville par ville pour garantir une présence locale, des délais maîtrisés et une connaissance parfaite des lieux de réception.
+      </p>
+
+      <div class="villes__grid">
+
+        <!-- Lyon — ACTIF -->
+        <article class="ville-card ville-card--active">
+          <span class="ville-card__badge ville-card__badge--live">Disponible maintenant</span>
+          <h3 class="ville-card__city">Lyon</h3>
+          <p class="ville-card__desc">
+            Notre ville d'origine. Nous couvrons toute la métropole lyonnaise et jusqu'à 30 km : Villeurbanne, Bron, Décines, Caluire, Vénissieux, Écully et plus encore.
+          </p>
+          <ul class="ville-card__features" aria-label="Inclus à Lyon">
+            <li>Livraison &amp; installation incluses</li>
+            <li>Animateur professionnel dédié</li>
+            <li>Tous types d'événements</li>
+            <li>Devis sous 24h garanti</li>
+          </ul>
+          <a href="/lyon/" class="btn-gold" style="display:inline-flex;font-size:.85rem;padding:.75rem 1.5rem;">
+            Voir Lyon →
+          </a>
+        </article>
+
+        <!-- Marseille — À venir -->
+        <article class="ville-card" aria-label="Marseille — bientôt disponible">
+          <span class="ville-card__badge ville-card__badge--soon">Bientôt disponible</span>
+          <h3 class="ville-card__city">Marseille</h3>
+          <p class="ville-card__desc">
+            Ouverture prévue pour l'été 2026. Les réservations anticipées sont déjà acceptées pour les événements à partir de septembre 2026.
+          </p>
+          <ul class="ville-card__features" aria-hidden="true">
+            <li>Toute la métropole marseillaise</li>
+            <li>Aix-en-Provence inclus</li>
+            <li>Mêmes formules qu'à Lyon</li>
+          </ul>
+          <span class="ville-card__link" aria-label="Marseille non disponible pour l'instant">Bientôt disponible</span>
+        </article>
+
+        <!-- Bordeaux — À venir -->
+        <article class="ville-card" aria-label="Bordeaux — bientôt disponible">
+          <span class="ville-card__badge ville-card__badge--soon">Bientôt disponible</span>
+          <h3 class="ville-card__city">Bordeaux</h3>
+          <p class="ville-card__desc">
+            Ouverture prévue fin 2026. Vous organisez un événement à Bordeaux ? Laissez-nous vos coordonnées pour être prévenus en priorité.
+          </p>
+          <ul class="ville-card__features" aria-hidden="true">
+            <li>Bordeaux Métropole</li>
+            <li>Arcachon &amp; Bassin</li>
+            <li>Mêmes formules qu'à Lyon</li>
+          </ul>
+          <span class="ville-card__link" aria-label="Bordeaux non disponible pour l'instant">Bientôt disponible</span>
+        </article>
+
+      </div>
+
+      <p style="margin-top:2rem;font-size:.9rem;color:var(--gray-600);text-align:center;">
+        Votre ville n'est pas encore couverte ?
+        <a href="/lyon/#contact" style="color:var(--gold);font-weight:600;">Contactez-nous</a> — nous étudions chaque demande.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       NOS FORMULES D'ANIMATION PHOTO
+  ══════════════════════════════════════════════════════════ -->
+  <section class="formules section" id="formules">
+    <div class="container">
+      <span class="label">Animation sur mesure</span>
+      <h2 class="section-title">Nos formules d'animation photo</h2>
+      <p class="section-sub">
+        Trois univers, trois ambiances — chacun pensé pour coller parfaitement au type d'événement et aux attentes de vos invités.
+      </p>
+
+      <div class="formules__grid">
+
+        <article class="formule-card">
+          <span class="formule-card__emoji" aria-hidden="true">💍</span>
+          <h3 class="formule-card__title">Photobooth Mariage</h3>
+          <p class="formule-card__subtitle">L'animation qui fait l'unanimité le jour J</p>
+          <p class="formule-card__desc">
+            Élégant, personnalisé et animé par un professionnel, notre photobooth mariage transforme votre cocktail et votre soirée en souvenirs imprimés que vos invités conserveront des années.
+            Fond personnalisé, accessoires premium, album photo en ligne inclus.
+          </p>
+          <a href="/lyon/mariage/" class="btn-outline formule-card__cta" style="font-size:.85rem;padding:.75rem 1.5rem;">
+            Photobooth mariage Lyon →
+          </a>
+        </article>
+
+        <article class="formule-card">
+          <span class="formule-card__emoji" aria-hidden="true">🎉</span>
+          <h3 class="formule-card__title">Photobooth Anniversaire</h3>
+          <p class="formule-card__subtitle">Fun, festif, mémorable pour tous les âges</p>
+          <p class="formule-card__desc">
+            Du 18 ans au 70 ans, de la fête d'enfants à la retraite — nous adaptons le thème, les accessoires et l'ambiance à votre événement. Chaque anniversaire mérite une animation à sa hauteur.
+          </p>
+          <a href="/lyon/anniversaire/" class="btn-outline formule-card__cta" style="font-size:.85rem;padding:.75rem 1.5rem;">
+            Photobooth anniversaire Lyon →
+          </a>
+        </article>
+
+        <article class="formule-card">
+          <span class="formule-card__emoji" aria-hidden="true">🏢</span>
+          <h3 class="formule-card__title">Photobooth Entreprise</h3>
+          <p class="formule-card__subtitle">Image de marque &amp; outil marketing</p>
+          <p class="formule-card__desc">
+            Séminaires, soirées de gala, salons professionnels, team building — notre photobooth branded aux couleurs de votre entreprise est à la fois une animation et un outil de collecte de données (RGPD).
+          </p>
+          <a href="/lyon/entreprise/" class="btn-outline formule-card__cta" style="font-size:.85rem;padding:.75rem 1.5rem;">
+            Photobooth entreprise Lyon →
+          </a>
+        </article>
+
+      </div>
+
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="/lyon/pas-cher/" style="font-size:.9rem;color:var(--gold);font-weight:600;">
+          Voir tous les tarifs et formules →
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       COMMENT ÇA MARCHE
+  ══════════════════════════════════════════════════════════ -->
+  <section class="comment" id="comment" aria-label="Processus de réservation">
+    <div class="container">
+      <span class="label" style="color:var(--gold);">Simple comme bonjour</span>
+      <h2 class="section-title" style="color:#fff;">Comment ça marche ?</h2>
+      <p style="color:rgba(255,255,255,.5);font-size:1.1rem;max-width:520px;margin-top:.5rem;">
+        Trois étapes entre votre demande et l'animation parfaite de votre événement.
+      </p>
+
+      <div class="comment__steps">
+
+        <div class="step">
+          <div class="step__num"><span>1</span></div>
+          <h3 class="step__title">Demandez votre devis</h3>
+          <p class="step__text">Remplissez le formulaire en ligne ou appelez-nous. Vous recevez un devis personnalisé sous 24h avec le détail de votre prestation.</p>
+        </div>
+
+        <div class="step">
+          <div class="step__num"><span>2</span></div>
+          <h3 class="step__title">On prépare tout</h3>
+          <p class="step__text">Fond, cadre, accessoires, bandeau photo — tout est personnalisé selon vos souhaits. Vous validez un bon à tirer avant l'événement.</p>
+        </div>
+
+        <div class="step">
+          <div class="step__num"><span>3</span></div>
+          <h3 class="step__title">Le jour J, on gère</h3>
+          <p class="step__text">Livraison, installation, animation, rangement. Un animateur est présent du début à la fin. Vous profitez de votre fête, sans aucun souci.</p>
+        </div>
+
+      </div>
+
+      <div style="text-align:center;margin-top:3.5rem;">
+        <a href="/lyon/" class="btn-gold">Commencer maintenant</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       TÉMOIGNAGES
+  ══════════════════════════════════════════════════════════ -->
+  <section class="temoignages section" id="avis">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <span class="label">Ils nous ont fait confiance</span>
+        <h2 class="section-title">Avis de nos clients</h2>
+        <div class="temoignages__stars" aria-label="Note moyenne 4.9 sur 5">
+          <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+          <span class="star">★</span><span class="star">★</span>
+          <span class="temoignages__note">4.9 / 5 — 127 avis vérifiés</span>
+        </div>
+      </div>
+
+      <div class="temoignages__grid">
+
+        <figure class="temoignage">
+          <span class="temoignage__quote" aria-hidden="true">&ldquo;</span>
+          <div class="temoignage__stars" aria-label="5 étoiles">
+            ★★★★★
+          </div>
+          <blockquote class="temoignage__text">
+            &ldquo;Notre photobooth a été LA star de la soirée. L'équipe a été parfaite du premier contact jusqu'au rangement. Les photos étaient superbes et nos invités adoraient. On recommande les yeux fermés.&rdquo;
+          </blockquote>
+          <figcaption class="temoignage__author">
+            <div class="temoignage__avatar" aria-hidden="true">S</div>
+            <div>
+              <p class="temoignage__name">Sophie &amp; Thomas M.</p>
+              <p class="temoignage__event">Mariage — Domaine de Valpré, Écully (69)</p>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="temoignage">
+          <span class="temoignage__quote" aria-hidden="true">&ldquo;</span>
+          <div class="temoignage__stars" aria-label="5 étoiles">★★★★★</div>
+          <blockquote class="temoignage__text">
+            &ldquo;Photobooth brandé pour notre soirée de gala annuel à Eurexpo. Rendu impeccable aux couleurs de notre charte. La collecte emails a parfaitement fonctionné. Contrat pro, facturation soignée. À recommander.&rdquo;
+          </blockquote>
+          <figcaption class="temoignage__author">
+            <div class="temoignage__avatar" aria-hidden="true">G</div>
+            <div>
+              <p class="temoignage__name">Direction RH — Groupe Seigneurie</p>
+              <p class="temoignage__event">Séminaire annuel — Eurexpo Lyon</p>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure class="temoignage">
+          <span class="temoignage__quote" aria-hidden="true">&ldquo;</span>
+          <div class="temoignage__stars" aria-label="5 étoiles">★★★★★</div>
+          <blockquote class="temoignage__text">
+            &ldquo;J'avais commandé pour les 40 ans de mon mari et c'était absolument parfait. L'installation était rapide, les accessoires de qualité et l'animateur vraiment sympa avec tous les invités. Merci !&rdquo;
+          </blockquote>
+          <figcaption class="temoignage__author">
+            <div class="temoignage__avatar" aria-hidden="true">A</div>
+            <div>
+              <p class="temoignage__name">Aurélie F.</p>
+              <p class="temoignage__event">Anniversaire 40 ans — Lyon 6e</p>
+            </div>
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       CTA FINAL
+  ══════════════════════════════════════════════════════════ -->
+  <section class="cta-final" aria-label="Appel à l'action">
+    <div class="container">
+      <span class="label">Prêt à créer des souvenirs ?</span>
+      <h2>Réservez votre photobooth<br><span style="color:var(--gold);">dès aujourd'hui</span></h2>
+      <p>Devis gratuit sous 24h. Disponibilité vérifiée immédiatement. Sans engagement.</p>
+      <div class="cta-final__ctas">
+        <a href="/lyon/" class="btn-gold">Devis gratuit pour Lyon</a>
+        <a href="tel:+33665420793" class="btn-outline btn-outline--white">📞 06 65 42 07 93</a>
+      </div>
+      <div class="cta-final__trust">
+        <div class="trust-item"><span>🔒</span><span>Paiement sécurisé</span></div>
+        <div class="trust-item"><span>⚡</span><span>Réponse en 24h</span></div>
+        <div class="trust-item"><span>⭐</span><span>4.9/5 · 127 avis</span></div>
+        <div class="trust-item"><span>🚚</span><span>Livraison incluse</span></div>
+        <div class="trust-item"><span>📝</span><span>Sans engagement</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div>
+          <p class="footer__brand">Photo<span>Booth</span><small>France</small></p>
+          <p class="footer__tagline">Location de photobooth partout en France pour mariages, anniversaires et événements d'entreprise.</p>
+          <div class="footer__stars" aria-label="Note 4.9 sur 5">
+            <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            <span class="star">★</span><span class="star">★</span>
+            <span class="footer__stars-note">4.9/5 · 127 avis</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="footer__title">Lyon</p>
+          <ul class="footer__list">
+            <li><a href="/lyon/">Photobooth Lyon</a></li>
+            <li><a href="/lyon/mariage/">Mariage</a></li>
+            <li><a href="/lyon/anniversaire/">Anniversaire</a></li>
+            <li><a href="/lyon/entreprise/">Entreprise</a></li>
+            <li><a href="/lyon/pas-cher/">Tarifs Lyon</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__title">Blog</p>
+          <ul class="footer__list">
+            <li><a href="/blog/prix-location-photobooth/">Guide des prix 2026</a></li>
+            <li><a href="/blog/idees-animations-mariage-lyon/">Animations mariage Lyon</a></li>
+            <li><a href="/blog/photobooth-ouvert-ferme/">Ouvert vs fermé</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="footer__title">Contact</p>
+          <ul class="footer__list footer__contact">
+            <li>
+              <svg class="footer__contact-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+              <a href="tel:+33665420793">06 65 42 07 93</a>
+            </li>
+            <li>
+              <svg class="footer__contact-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              <a href="mailto:contact@location-photobooth.fr">contact@location-photobooth.fr</a>
+            </li>
+            <li>
+              <svg class="footer__contact-icon" width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Réponse sous 24h</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p>© <span id="year"></span> Location Photobooth France — Tous droits réservés</p>
+        <nav class="footer__legal" aria-label="Liens légaux">
+          <a href="/mentions-legales/">Mentions légales</a>
+          <a href="/cgv/">CGV</a>
+          <a href="/mentions-legales/#confidentialite">Confidentialité</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ══════════════════════════════════════════════════════════
+       SCRIPTS
+  ══════════════════════════════════════════════════════════ -->
+  <script>
+    // ── Année dynamique ───────────────────────
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ── Nav sticky ───────────────────────────
+    const nav    = document.getElementById('nav');
+    const burger = document.getElementById('burger');
+    const menu   = document.getElementById('mobileMenu');
+
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    burger.addEventListener('click', () => {
+      const expanded = burger.getAttribute('aria-expanded') === 'true';
+      burger.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('open');
+    });
+
+    // Fermer le menu mobile au clic sur un lien
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
