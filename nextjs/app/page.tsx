@@ -21,7 +21,7 @@ export const metadata: Metadata = buildMetadata({
 const FAQ_HOME: FaqItem[] = [
   {
     question: 'Combien coûte la location d\'un photobooth à Lyon ?',
-    answer:   'Nos formules commencent à 350 € TTC pour la Borne Classique (3h) et vont jusqu\'à 550 € TTC pour la Vidéo 360° (4h). Tous les tarifs incluent la livraison, l\'installation, l\'animateur et les impressions illimitées. Aucun frais caché. Devis gratuit sous 24h.',
+    answer:   'Nos tarifs varient selon la durée, les options et le type d\'événement. Tous nos tarifs incluent la livraison, l\'installation, l\'animateur et les impressions illimitées. Aucun frais caché. Devis gratuit et personnalisé sous 24h.',
   },
   {
     question: 'Quelle est la différence entre un photobooth et une borne selfie ?',
@@ -58,7 +58,6 @@ const FAQ_HOME: FaqItem[] = [
 const FORMULES = [
   {
     name:        'Essentielle',
-    price:       '350',
     desc:        'Idéale pour anniversaires & petits événements',
     duration:    '3 heures',
     highlighted: false,
@@ -74,7 +73,6 @@ const FORMULES = [
   },
   {
     name:        'Premium',
-    price:       '450',
     desc:        'Notre formule la plus populaire',
     duration:    '4 heures',
     highlighted: true,
@@ -92,7 +90,6 @@ const FORMULES = [
   },
   {
     name:        '360°',
-    price:       '550',
     desc:        'L\'animation la plus spectaculaire',
     duration:    '4 heures',
     highlighted: false,
@@ -329,11 +326,7 @@ function Formules() {
                 <h3 className="text-xl font-serif font-bold text-gray-900">{f.name}</h3>
                 <p className="text-sm text-gray-500 mt-1">{f.desc}</p>
                 <div className="mt-4">
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">À partir de</p>
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-serif font-bold text-gray-900">{f.price} €</span>
-                    <span className="text-gray-400 text-sm">TTC</span>
-                  </div>
+                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">À partir de</p>
                 </div>
                 <p className="text-sm text-gold-500 font-medium mt-1">{f.duration}</p>
               </div>
@@ -361,7 +354,7 @@ function Formules() {
         </div>
 
         <p className="text-center text-sm text-gray-400 mt-10">
-          Tarifs TTC · Acompte 30 % à la réservation · Livraison gratuite 30 km Lyon
+          Acompte 30 % à la réservation · Livraison gratuite 30 km Lyon
         </p>
       </div>
     </section>

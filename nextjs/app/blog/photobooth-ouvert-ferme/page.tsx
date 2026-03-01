@@ -3,7 +3,7 @@ import SchemaOrg from '@/components/seo/SchemaOrg'
 import ContactForm from '@/components/forms/ContactForm'
 import { METADATA_PRESETS } from '@/lib/metadata'
 
-const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const PAGE_URL = `${BASE}/blog/photobooth-ouvert-ferme/`
 
 export const metadata = METADATA_PRESETS.blogOuvertFerme

@@ -92,7 +92,7 @@ function PageContent() {
           {/* 1. Éditeur */}
           <Section id="editeur" title="1. Éditeur du site">
             <p>
-              Le site <strong className="text-gray-900">location-photobooth.fr</strong> est édité par&nbsp;:
+              Le site <strong className="text-gray-900">photobooth-evenement.fr</strong> est édité par&nbsp;:
             </p>
             <dl className="space-y-3 bg-gray-50 border border-gray-200 p-5 mt-2">
               <Row label="Raison sociale"         value={EDITEUR.nom}       />
@@ -109,7 +109,7 @@ function PageContent() {
             <p>
               Le directeur de la publication est{' '}
               <strong className="text-gray-900">{EDITEUR.directeur}</strong>,
-              responsable éditorial du site location-photobooth.fr.
+              responsable éditorial du site photobooth-evenement.fr.
             </p>
             <p>
               Pour toute question relative au contenu du site, vous pouvez le contacter
@@ -126,7 +126,7 @@ function PageContent() {
           {/* 3. Hébergement */}
           <Section id="hebergement" title="3. Hébergement">
             <p>
-              Le site location-photobooth.fr est hébergé par&nbsp;:
+              Le site photobooth-evenement.fr est hébergé par&nbsp;:
             </p>
             <dl className="space-y-3 bg-gray-50 border border-gray-200 p-5 mt-2">
               <Row label="Hébergeur"   value={HEBERGEUR.nom}     />
@@ -167,7 +167,7 @@ function PageContent() {
             </p>
             <p>
               En revanche, les liens hypertextes pointant vers le site
-              location-photobooth.fr sont autorisés sans demande préalable,
+              photobooth-evenement.fr sont autorisés sans demande préalable,
               sous réserve de ne pas nuire à l&apos;image de la marque.
             </p>
           </Section>

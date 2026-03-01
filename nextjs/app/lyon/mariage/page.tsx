@@ -5,7 +5,7 @@ import ContactForm                from '@/components/forms/ContactForm'
 import { METADATA_PRESETS }       from '@/lib/metadata'
 import { FAQ_MARIAGE, type FaqItem } from '@/lib/schemas'
 
-const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const PAGE_URL = `${BASE}/lyon/mariage/`
 
 export const metadata = METADATA_PRESETS.mariage
@@ -84,8 +84,6 @@ const FORMULES = [
     name:        'Essentiel Mariage',
     tag:         'Vin d\'honneur',
     duration:    '3 heures',
-    price:       '299 €',
-    suffix:      'TTC',
     highlighted: false,
     desc:        "Idéal pour un vin d'honneur de 60 à 120 personnes. L'animateur installe le photobooth 1h avant vos invités et le range en fin de cocktail.",
     features: [
@@ -101,8 +99,6 @@ const FORMULES = [
     name:        'Premium Mariage',
     tag:         'Vin d\'honneur + soirée',
     duration:    '5 heures',
-    price:       '449 €',
-    suffix:      'TTC',
     highlighted: true,
     desc:        'Notre formule mariage la plus populaire. Couvre vin d\'honneur et début de soirée dansante, avec fond personnalisé aux couleurs du mariage.',
     features: [
@@ -118,8 +114,6 @@ const FORMULES = [
     name:        'Excellence Mariage',
     tag:         'Mariage premium',
     duration:    'Sur mesure',
-    price:       'Sur devis',
-    suffix:      '',
     highlighted: false,
     desc:        "Pour les mariages premium et les galas. Miroir interactif, double animateur, personnalisation complète — un dispositif haut de gamme à la hauteur du lieu.",
     features: [
@@ -242,7 +236,7 @@ function Hero() {
         </p>
 
         <p className="text-sm text-gray-500 mb-10 tracking-wide">
-          ✓ Formules dès 299 € TTC &nbsp;·&nbsp; ✓ Cadre personnalisé aux couleurs du mariage &nbsp;·&nbsp; ✓ Devis sous 24h
+          ✓ Cadre personnalisé aux couleurs du mariage &nbsp;·&nbsp; ✓ Animateur inclus &nbsp;·&nbsp; ✓ Devis gratuit sous 24h
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -518,13 +512,7 @@ function Formules() {
               <p className="text-sm text-gray-500 mb-4">{f.desc}</p>
 
               <div className="mb-1">
-                {f.price !== 'Sur devis' && (
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">À partir de</p>
-                )}
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-serif font-bold text-gray-900">{f.price}</span>
-                  {f.suffix && <span className="text-gray-400 text-sm">{f.suffix}</span>}
-                </div>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">À partir de</p>
               </div>
               <p className="text-sm text-gold-500 font-medium mb-6">{f.duration}</p>
 
@@ -721,7 +709,7 @@ export default function MariageLyonPage() {
       <SchemaOrg
         page="service"
         serviceName="Location Photobooth Mariage Lyon"
-        serviceDescription="Location de photobooth pour mariage à Lyon. Animateur dédié, impressions illimitées, fond personnalisé. Formules de 299 € à 449 € TTC."
+        serviceDescription="Location de photobooth pour mariage à Lyon. Animateur dédié, impressions illimitées, fond personnalisé. Devis gratuit sous 24h."
         serviceUrl={PAGE_URL}
         serviceOffers={OFFERS_MARIAGE}
         faq={FAQ_MARIAGE}

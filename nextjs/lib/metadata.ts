@@ -7,7 +7,7 @@
 
 import type { Metadata } from 'next'
 
-const BASE             = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE             = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const OG_DEFAULT_IMAGE = `${BASE}/images/og-default.jpg`
 const TWITTER_HANDLE   = '@PhotoboothLyon'
 
@@ -121,7 +121,7 @@ export const METADATA_PRESETS = {
 
   mariage: buildMetadata({
     title:       'Photobooth Mariage Lyon — Animation Photo Cocktail & Soirée',
-    description: "Photobooth mariage à Lyon : fond personnalisé, accessoires premium, animateur dédié. Formules de 299 € à 449 €. Devis mariage gratuit en 24h ✓",
+    description: "Photobooth mariage à Lyon : fond personnalisé, accessoires premium, animateur dédié. Devis mariage gratuit sous 24h ✓",
     path:        '/lyon/mariage/',
     ogImage:     '/images/og-mariage.jpg',
     ogImageAlt:  "Photobooth mariage Lyon — Animation photo vin d'honneur et soirée",
@@ -129,7 +129,7 @@ export const METADATA_PRESETS = {
 
   anniversaire: buildMetadata({
     title:       'Photobooth Anniversaire Lyon — Animation Pour Tous les Âges',
-    description: "Location photobooth pour anniversaire à Lyon. 18 ans, 30, 40, 50 ans... Formules dès 249 €. Animateur, impressions illimitées, personnalisation inclus ✓",
+    description: "Location photobooth pour anniversaire à Lyon. 18 ans, 30, 40, 50 ans... Animateur, impressions illimitées, personnalisation inclus. Devis gratuit sous 24h ✓",
     path:        '/lyon/anniversaire/',
     ogImage:     '/images/og-anniversaire.jpg',
     ogImageAlt:  'Photobooth anniversaire Lyon — Animation photo festive tous âges',
@@ -145,7 +145,7 @@ export const METADATA_PRESETS = {
 
   pasCher: buildMetadata({
     title:       'Location Photobooth Pas Cher Lyon — Tarifs Clairs, Qualité Garantie',
-    description: "Louez un photobooth à Lyon sans vous ruiner. Nos formules dès 249 €. Qualité pro, accessoires inclus, pas de frais cachés. Devis immédiat ✓",
+    description: "Louez un photobooth à Lyon sans vous ruiner. Qualité pro, animateur inclus, zéro frais cachés. Devis gratuit et personnalisé sous 24h ✓",
     path:        '/lyon/pas-cher/',
     ogImage:     '/images/og-tarifs.jpg',
     ogImageAlt:  'Tarifs photobooth Lyon — Formules claires sans frais cachés',
@@ -192,7 +192,7 @@ export const METADATA_PRESETS = {
 
   mentionsLegales: buildMetadata({
     title:       'Mentions Légales — Location Photobooth',
-    description: 'Mentions légales du site location-photobooth.fr : éditeur, hébergeur, données personnelles.',
+    description: 'Mentions légales du site photobooth-evenement.fr : éditeur, hébergeur, données personnelles.',
     path:        '/mentions-legales/',
     robots:      'noindex',
   }),

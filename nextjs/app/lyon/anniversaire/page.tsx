@@ -5,7 +5,7 @@ import ContactForm                   from '@/components/forms/ContactForm'
 import { METADATA_PRESETS }          from '@/lib/metadata'
 import { FAQ_LYON, type FaqItem }    from '@/lib/schemas'
 
-const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const PAGE_URL = `${BASE}/lyon/anniversaire/`
 
 export const metadata = METADATA_PRESETS.anniversaire
@@ -114,8 +114,6 @@ const FORMULES_TARIF = [
     name:        'Mini',
     tag:         'Jusqu\'à 60 invités',
     duration:    '2 heures',
-    price:       '249 €',
-    suffix:      'TTC',
     highlighted: false,
     desc:        "Idéal pour un goûter d'anniversaire ou une petite fête entre proches. L'essentiel sans le superflu.",
     features: [
@@ -130,8 +128,6 @@ const FORMULES_TARIF = [
     name:        'Fête',
     tag:         'Jusqu\'à 120 invités',
     duration:    '3 heures',
-    price:       '299 €',
-    suffix:      'TTC',
     highlighted: true,
     desc:        "Notre formule anniversaire la plus populaire. 3 heures pour couvrir l'apéritif et le repas — tout le monde passe au photobooth.",
     features: [
@@ -146,8 +142,6 @@ const FORMULES_TARIF = [
     name:        'Grande Soirée',
     tag:         '120+ invités',
     duration:    '5 heures',
-    price:       '449 €',
-    suffix:      'TTC',
     highlighted: false,
     desc:        "Pour les grandes soirées et les anniversaires ronds. Fond personnalisé, accessoires premium, galerie numérique incluse.",
     features: [
@@ -246,7 +240,7 @@ function Hero() {
         </p>
 
         <p className="text-sm text-gray-500 mb-10 tracking-wide">
-          ✓ Formules dès 249 € TTC &nbsp;·&nbsp; ✓ Enfants, adultes, tous les âges &nbsp;·&nbsp; ✓ Devis gratuit sous 24h
+          ✓ Enfants, adultes, tous les âges &nbsp;·&nbsp; ✓ Animateur inclus &nbsp;·&nbsp; ✓ Devis gratuit sous 24h
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -471,11 +465,7 @@ function Tarifs() {
               <p className="text-sm text-gray-500 mb-4">{f.desc}</p>
 
               <div className="mb-1">
-                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">À partir de</p>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-serif font-bold text-gray-900">{f.price}</span>
-                  <span className="text-gray-400 text-sm">{f.suffix}</span>
-                </div>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">À partir de</p>
               </div>
               <p className="text-sm text-gold-500 font-medium mb-6">{f.duration}</p>
 
@@ -623,7 +613,7 @@ export default function AnniversaireLyonPage() {
       <SchemaOrg
         page="service"
         serviceName="Location Photobooth Anniversaire Lyon"
-        serviceDescription="Location de photobooth pour anniversaire à Lyon. 18, 30, 40, 50 ans... Animateur, impressions illimitées, personnalisation inclus. Formules dès 249 €."
+        serviceDescription="Location de photobooth pour anniversaire à Lyon. 18, 30, 40, 50 ans... Animateur, impressions illimitées, personnalisation inclus. Devis gratuit sous 24h."
         serviceUrl={PAGE_URL}
         serviceOffers={OFFERS_ANNIVERSAIRE}
         faq={FAQ_LYON}

@@ -5,7 +5,7 @@ import ContactForm                    from '@/components/forms/ContactForm'
 import { METADATA_PRESETS }           from '@/lib/metadata'
 import { type FaqItem }               from '@/lib/schemas'
 
-const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const PAGE_URL = `${BASE}/lyon/pas-cher/`
 
 export const metadata = METADATA_PRESETS.pasCher
@@ -19,9 +19,9 @@ const BREADCRUMBS = [
 // ─── Données ──────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: 'Dès 290 €', label: 'TTC tout inclus'      },
-  { value: '0 €',       label: 'de frais cachés'       },
-  { value: '24h',       label: 'devis gratuit garanti' },
+  { value: 'Devis',  label: 'gratuit sous 24h'    },
+  { value: '0 €',    label: 'de frais cachés'      },
+  { value: '100%',   label: 'tarif personnalisé'   },
 ]
 
 const FORMULES = [
@@ -29,8 +29,6 @@ const FORMULES = [
     name:        'Formule Essentiel',
     tag:         'Petite soirée',
     duration:    '2 à 3 heures',
-    price:       '249 €',
-    suffix:      'TTC',
     highlighted: false,
     features: [
       'Photobooth ouvert',
@@ -47,8 +45,6 @@ const FORMULES = [
     name:        'Formule Premium',
     tag:         'Plus populaire',
     duration:    '4 à 5 heures',
-    price:       '449 €',
-    suffix:      'TTC',
     highlighted: true,
     features: [
       'Photobooth ouvert',
@@ -67,8 +63,6 @@ const FORMULES = [
     name:        'Formule Corporate',
     tag:         'Sur mesure',
     duration:    'Sur mesure',
-    price:       'Sur devis',
-    suffix:      '',
     highlighted: false,
     features: [
       'Photobooth ouvert ou miroir interactif',
@@ -138,7 +132,7 @@ const VARIABLES = [
 const FAQ_TARIFS: FaqItem[] = [
   {
     question: 'Quel est le prix d\'un photobooth à Lyon ?',
-    answer:   "Nos tarifs commencent à 249 € TTC pour la formule Essentiel (2 à 3 heures). La formule Premium la plus demandée est à 449 € TTC pour 4 à 5 heures. Les prestations sur mesure (salon multi-jours, corporate branded) font l'objet d'un devis personnalisé. Tous nos tarifs sont exprimés TTC, aucun frais caché.",
+    answer:   "Nos tarifs varient selon la durée, les options et votre type d'événement. Toutes nos formules incluent livraison, animateur, impressions illimitées et personnalisation — sans frais cachés. Demandez votre devis gratuit et personnalisé sous 24h.",
   },
   {
     question: 'Y a-t-il des frais cachés dans vos tarifs ?',
@@ -146,7 +140,7 @@ const FAQ_TARIFS: FaqItem[] = [
   },
   {
     question: 'Quelle formule choisir pour un mariage ?',
-    answer:   "Pour un vin d'honneur seul (2 à 3h), la formule Essentiel à 249 € TTC est adaptée jusqu'à 100 invités. Pour un mariage complet couvrant le vin d'honneur et la soirée (4 à 5h), nous recommandons la formule Premium à 449 € TTC. C'est notre formule mariage la plus populaire pour 80 à 200 invités.",
+    answer:   "Pour un vin d'honneur seul (2 à 3h), la formule Essentiel est adaptée jusqu'à 100 invités. Pour un mariage complet couvrant le vin d'honneur et la soirée (4 à 5h), nous recommandons la formule Premium. Demandez votre devis gratuit pour obtenir un tarif adapté à votre date et votre lieu.",
   },
   {
     question: 'Peut-on louer un photobooth pour 2 heures seulement ?',
@@ -227,7 +221,7 @@ function Hero() {
         <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-4 leading-relaxed">
           Nos tarifs transparents, sans surprise.
           Qualité professionnelle, animateur inclus,
-          impressions illimitées — dès 249&nbsp;€&nbsp;TTC.
+          impressions illimitées — devis gratuit sous 24h.
         </p>
 
         <p className="text-sm text-gray-500 mb-10 tracking-wide">
@@ -305,15 +299,7 @@ function Formules() {
                 <p className="text-sm text-gray-500 mb-6">{f.duration}</p>
 
                 <div className="mb-6">
-                  {f.price !== 'Sur devis' && (
-                    <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">À partir de</p>
-                  )}
-                  <span className={`text-4xl font-serif font-bold ${f.highlighted ? 'text-gold-400' : 'text-gray-900'}`}>
-                    {f.price}
-                  </span>
-                  {f.suffix && (
-                    <span className="text-gray-500 text-sm ml-1">{f.suffix}</span>
-                  )}
+                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">À partir de</p>
                 </div>
 
                 <ul className="space-y-3 mb-8 flex-1">
@@ -484,7 +470,7 @@ function PasLowCost() {
             <div className="p-8 bg-white">
               <h3 className="font-serif font-bold text-gray-900 text-xl mb-6 flex items-center gap-3">
                 <span className="w-6 h-6 rounded-full bg-gold-400 flex items-center justify-center text-white text-xs">✓</span>
-                Notre photobooth dès 249&nbsp;€
+                Notre photobooth — qualité professionnelle
               </h3>
               <ul className="space-y-4 text-sm text-gray-700">
                 {[
@@ -554,17 +540,17 @@ function MaillageInterne() {
               {
                 href:  '/lyon/mariage/',
                 label: 'Photobooth Mariage Lyon',
-                desc:  'Formules 3h et 5h — dès 299 € TTC',
+                desc:  'Formules 3h et 5h — devis gratuit',
               },
               {
                 href:  '/lyon/anniversaire/',
                 label: 'Photobooth Anniversaire Lyon',
-                desc:  'Formules 2h à 5h — dès 249 € TTC',
+                desc:  'Formules 2h à 5h — devis gratuit',
               },
               {
                 href:  '/lyon/entreprise/',
                 label: 'Photobooth Entreprise Lyon',
-                desc:  'Formules corporate — dès 449 € HT',
+                desc:  'Formules corporate — devis gratuit',
               },
               {
                 href:  '/lyon/',
@@ -667,7 +653,7 @@ export default function PasCherLyonPage() {
       <SchemaOrg
         page="service"
         serviceName="Location Photobooth Pas Cher Lyon"
-        serviceDescription="Location de photobooth à Lyon sans vous ruiner. Formules dès 249 € TTC. Qualité professionnelle, animateur inclus, impressions illimitées, zéro frais caché."
+        serviceDescription="Location de photobooth à Lyon sans vous ruiner. Qualité professionnelle, animateur inclus, impressions illimitées, zéro frais caché. Devis gratuit sous 24h."
         serviceUrl={PAGE_URL}
         serviceOffers={OFFERS_PAS_CHER}
         faq={FAQ_TARIFS}

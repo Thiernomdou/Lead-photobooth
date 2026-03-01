@@ -5,7 +5,7 @@ import ContactForm                    from '@/components/forms/ContactForm'
 import { METADATA_PRESETS }           from '@/lib/metadata'
 import { FAQ_ENTREPRISE, type FaqItem } from '@/lib/schemas'
 
-const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE     = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const PAGE_URL = `${BASE}/lyon/entreprise/`
 
 export const metadata = METADATA_PRESETS.entreprise
@@ -117,8 +117,6 @@ const FORMULES = [
     name:        'Séminaire',
     tag:         '50 à 150 personnes',
     duration:    '4 heures',
-    price:       '449 €',
-    suffix:      'HT',
     highlighted: false,
     desc:        "Pour les séminaires, journées de formation et soirées d'équipe jusqu'à 150 collaborateurs.",
     features: [
@@ -134,8 +132,6 @@ const FORMULES = [
     name:        'Corporate',
     tag:         '150 à 400 personnes',
     duration:    '5 à 6 heures',
-    price:       '649 €',
-    suffix:      'HT',
     highlighted: true,
     desc:        "Notre formule entreprise la plus complète : charte graphique intégrale, collecte emails et galerie brandée.",
     features: [
@@ -151,8 +147,6 @@ const FORMULES = [
     name:        'Excellence / Salon',
     tag:         'Stands & grands événements',
     duration:    'Sur mesure',
-    price:       'Sur devis',
-    suffix:      '',
     highlighted: false,
     desc:        "Pour les stands multi-jours, salons professionnels et événements corporate premium avec miroir interactif.",
     features: [
@@ -246,7 +240,7 @@ function Hero() {
         </p>
 
         <p className="text-sm text-gray-500 mb-10 tracking-wide">
-          ✓ Formules dès 449 € HT &nbsp;·&nbsp; ✓ Bon de commande &amp; facture TVA &nbsp;·&nbsp; ✓ Devis sous 24h
+          ✓ Bon de commande &amp; facture TVA &nbsp;·&nbsp; ✓ Branding aux couleurs de votre marque &nbsp;·&nbsp; ✓ Devis sous 24h
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -552,13 +546,7 @@ function Formules() {
               <p className="text-sm text-gray-500 mb-4">{f.desc}</p>
 
               <div className="mb-1">
-                {f.price !== 'Sur devis' && (
-                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">À partir de</p>
-                )}
-                <div className="flex items-baseline gap-1">
-                  <span className="text-4xl font-serif font-bold text-gray-900">{f.price}</span>
-                  {f.suffix && <span className="text-gray-400 text-sm">{f.suffix}</span>}
-                </div>
+                <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">À partir de</p>
               </div>
               <p className="text-sm text-gold-500 font-medium mb-6">{f.duration}</p>
 
@@ -594,7 +582,7 @@ function Formules() {
 
         <p className="text-center text-sm text-gray-400 mt-6">
           <Link href="/lyon/pas-cher/" className="text-gold-500 hover:underline font-medium">
-            Voir aussi nos tarifs TTC pour les particuliers →
+            Voir nos formules pour particuliers →
           </Link>
         </p>
       </div>

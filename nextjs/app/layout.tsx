@@ -16,7 +16,7 @@ const playfair = Playfair_Display({
   display: 'swap',
 })
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

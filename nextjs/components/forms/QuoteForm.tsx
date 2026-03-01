@@ -48,9 +48,9 @@ const BOOTH_MODELS: { label: BoothModel; emoji: string; desc: string }[] = [
 
 const OPTIONS_LIST: { label: string; extra: string }[] = [
   { label: 'Impression photos instantanée',  extra: 'inclus'  },
-  { label: 'Fond personnalisé',              extra: '+50 €'   },
-  { label: 'Livre d\'or digital',            extra: '+80 €'   },
-  { label: 'Animateur dédié',                extra: '+100 €'  },
+  { label: 'Fond personnalisé',              extra: 'inclus'  },
+  { label: 'Livre d\'or digital',            extra: 'inclus'  },
+  { label: 'Animateur dédié',                extra: 'inclus'  },
   { label: 'Partage réseaux sociaux',        extra: 'inclus'  },
 ]
 

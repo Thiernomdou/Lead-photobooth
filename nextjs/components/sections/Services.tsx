@@ -12,7 +12,7 @@ const SERVICES = [
       'Animateur professionnel',
       'Impressions instantanées 10×15 cm',
     ],
-    price: 'À partir de 299 €',
+    price: 'Devis gratuit',
     badge: 'Le plus demandé',
   },
   {
@@ -28,7 +28,7 @@ const SERVICES = [
       'Galerie en ligne 30 jours',
       'Photomaton tactile',
     ],
-    price: 'À partir de 249 €',
+    price: 'Devis gratuit',
     badge: null,
   },
   {

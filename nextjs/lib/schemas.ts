@@ -1,14 +1,14 @@
 /**
  * lib/schemas.ts
  * ─────────────────────────────────────────────────────────────────────────────
- * Centralized Schema.org factory functions for location-photobooth.fr
+ * Centralized Schema.org factory functions for photobooth-evenement.fr
  * All schemas follow Google's Structured Data guidelines (2026).
  *
  * Usage:
  *   import { localBusinessSchema, faqPageSchema, breadcrumbSchema } from '@/lib/schemas'
  */
 
-const BASE   = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE   = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 const LB_ID  = `${BASE}/#localbusiness`
 const ORG_ID = `${BASE}/#organization`
 
@@ -416,11 +416,11 @@ export const FAQ_LYON: FaqItem[] = [
 export const FAQ_MARIAGE: FaqItem[] = [
   {
     question: 'Combien de temps faut-il prévoir pour le photobooth lors d\'un mariage ?',
-    answer:   "Pour un mariage, nous recommandons 3h minimum pour le vin d'honneur seul, ou 5h pour couvrir vin d'honneur + soirée. Notre formule la plus populaire pour les mariages est la formule Premium 5h à 449 € TTC.",
+    answer:   "Pour un mariage, nous recommandons 3h minimum pour le vin d'honneur seul, ou 5h pour couvrir vin d'honneur + soirée. Notre formule la plus populaire est la formule Premium 5h. Demandez votre devis gratuit sous 24h.",
   },
   {
     question: 'Peut-on réserver le photobooth uniquement pour le vin d\'honneur ?',
-    answer:   "Oui, notre formule Essentiel 3h à 299 € TTC est parfaitement adaptée à un vin d'honneur seul de 60 à 120 personnes. L'animateur installe le photobooth 1h avant le début du cocktail et le dérange en fin de vin d'honneur.",
+    answer:   "Oui, notre formule Essentiel 3h est parfaitement adaptée à un vin d'honneur seul de 60 à 120 personnes. L'animateur installe le photobooth 1h avant le début du cocktail et le range en fin de vin d'honneur.",
   },
   {
     question: 'Le fond personnalisé est-il inclus dans la formule mariage ?',
@@ -443,7 +443,7 @@ export const FAQ_ENTREPRISE: FaqItem[] = [
   },
   {
     question: 'Proposez-vous une facturation professionnelle avec TVA ?',
-    answer:   "Oui, nous émettons des factures professionnelles avec TVA pour tous nos clients entreprise. Nos formules entreprise sont exprimées HT : Séminaire à 449 € HT et Corporate à 649 € HT.",
+    answer:   "Oui, nous émettons des factures professionnelles avec TVA pour tous nos clients entreprise. Contactez-nous pour recevoir un devis HT personnalisé selon la durée et le type d'événement.",
   },
   {
     question: 'Intervenez-vous à Eurexpo et dans les centres d\'affaires lyonnais ?',

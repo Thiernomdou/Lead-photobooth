@@ -14,7 +14,7 @@
  *   <SchemaOrg page="service"
  *     serviceName="Photobooth Mariage Lyon"
  *     serviceDescription="..."
- *     serviceUrl="https://location-photobooth.fr/lyon/mariage/"
+ *     serviceUrl="https://photobooth-evenement.fr/lyon/mariage/"
  *     serviceOffers={OFFERS_MARIAGE}
  *     faq={FAQ_MARIAGE}
  *     breadcrumbs={[...]}
@@ -23,7 +23,7 @@
  *   // Page blog
  *   <SchemaOrg page="blog"
  *     article={{ headline, description, datePublished, ... }}
- *     articleUrl="https://location-photobooth.fr/blog/prix-location-photobooth/"
+ *     articleUrl="https://photobooth-evenement.fr/blog/prix-location-photobooth/"
  *     breadcrumbs={[...]}
  *   />
  */

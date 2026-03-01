@@ -5,7 +5,7 @@ import ContactForm    from '@/components/forms/ContactForm'
 import { METADATA_PRESETS } from '@/lib/metadata'
 import { FAQ_LYON }         from '@/lib/schemas'
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://location-photobooth.fr'
+const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 
 export const metadata = METADATA_PRESETS.lyon
 
@@ -29,7 +29,6 @@ const PRESTATIONS = [
     badge:       'Le plus demandé',
     h3:          'Photobooth mariage Lyon',
     desc:        "Votre mariage mérite une animation à la hauteur. Cadre personnalisé aux couleurs de votre thème, accessoires premium, animateur dédié — votre vin d'honneur et votre soirée ne ressembleront à aucun autre.",
-    price:       'Dès 299 € TTC',
     features:    ['Fond et cadre personnalisés', 'Accessoires premium inclus', 'Animateur dédié toute la soirée', "Galerie en ligne 30 jours"],
     cta:         'Découvrir la formule mariage',
   },
@@ -39,7 +38,6 @@ const PRESTATIONS = [
     badge:       null,
     h3:          'Photobooth anniversaire Lyon',
     desc:        "Du 18 ans euphorique au 50 ans élégant, de l'anniversaire enfant à la garden party entre amis — notre photobooth s'adapte à l'ambiance de votre fête et crée des souvenirs qui durent toute une vie.",
-    price:       'Dès 249 € TTC',
     features:    ["Thème personnalisé selon l'âge", 'Props festifs et originaux', 'Partage QR code instantané', 'Impression en 10 secondes'],
     cta:         'Découvrir la formule anniversaire',
   },
@@ -49,7 +47,6 @@ const PRESTATIONS = [
     badge:       'B2B',
     h3:          'Photobooth entreprise Lyon',
     desc:        "Séminaire, soirée de gala, stand à Eurexpo, team building — notre photobooth branded renforce votre image de marque, fidélise vos collaborateurs et génère de l'engagement social naturel autour de votre événement.",
-    price:       'Dès 449 € HT',
     features:    ['Branding aux couleurs de votre marque', 'Collecte emails RGPD compliant', 'Facturation professionnelle avec TVA', 'Disponible sur stands et salons'],
     cta:         'Découvrir la formule entreprise',
   },
@@ -59,7 +56,6 @@ const PRESTATIONS = [
     badge:       null,
     h3:          'Location photobooth pas cher Lyon',
     desc:        "Qualité professionnelle ne rime pas forcément avec tarif prohibitif. Nos formules d'entrée de gamme intègrent animateur, impressions illimitées et personnalisation — sans les frais cachés pratiqués par certains concurrents.",
-    price:       'Dès 249 € TTC',
     features:    ['Tarifs clairs et sans surprises', 'Animateur et impressions inclus', 'Personnalisation du cadre photo', 'Devis comparatif gratuit sous 24h'],
     cta:         'Voir nos tarifs transparents',
   },
@@ -141,8 +137,6 @@ const FORMULES = [
   {
     name:        'Essentiel',
     duration:    '2 heures',
-    price:       '249 €',
-    suffix:      'TTC',
     highlighted: false,
     desc:        "Pour les vin d'honneur et petites soirées jusqu'à 80 personnes",
     features: [
@@ -156,8 +150,6 @@ const FORMULES = [
   {
     name:        'Premium',
     duration:    '5 heures',
-    price:       '449 €',
-    suffix:      'TTC',
     highlighted: true,
     desc:        'La formule la plus populaire — mariages, anniversaires, soirées',
     features: [
@@ -172,8 +164,6 @@ const FORMULES = [
   {
     name:        'Excellence',
     duration:    'Sur mesure',
-    price:       'Sur devis',
-    suffix:      '',
     highlighted: false,
     desc:        "Mariages premium, galas et grands événements d'entreprise",
     features: [
@@ -603,15 +593,7 @@ function Formules() {
                 <h3 className="text-xl font-serif font-bold text-gray-900">{f.name}</h3>
                 <p className="text-sm text-gray-500 mt-1">{f.desc}</p>
                 <div className="mt-4">
-                  {f.price !== 'Sur devis' && (
-                    <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-1">À partir de</p>
-                  )}
-                  <div className="flex items-baseline gap-1">
-                    <span className="text-4xl font-serif font-bold text-gray-900">{f.price}</span>
-                    {f.suffix && (
-                      <span className="text-gray-400 text-sm">{f.suffix}</span>
-                    )}
-                  </div>
+                  <p className="text-xs font-medium text-gray-400 uppercase tracking-wide">À partir de</p>
                 </div>
                 <p className="text-sm text-gold-500 font-medium mt-1">{f.duration}</p>
               </div>
@@ -639,7 +621,7 @@ function Formules() {
         </div>
 
         <p className="text-center text-sm text-gray-400 mt-10">
-          Tarifs TTC · Acompte 30 % à la réservation · Solde 7 jours avant l&apos;événement
+          Acompte 30 % à la réservation · Solde 7 jours avant l&apos;événement
           {' '}·{' '}
           <Link href="/lyon/pas-cher/" className="text-gold-500 hover:underline font-medium">
             Voir le détail de tous nos tarifs →
