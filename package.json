@@ -1,13 +1,11 @@
 {
   "name": "location-photobooth",
   "version": "1.0.0",
-  "description": "Site vitrine location photobooth — structure nationale scalable",
   "scripts": {
-    "dev": "vite",
-    "build": "cd nextjs && npm install && npm run build",
-    "preview": "vite preview"
+    "dev": "npm --prefix nextjs run dev",
+    "build": "npm --prefix nextjs run build"
   },
-  "devDependencies": {
-    "vite": "^6.0.0"
+  "dependencies": {
+    "next": "^15.2.0"
   }
 }
