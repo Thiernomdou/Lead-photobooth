@@ -4,10 +4,17 @@ let _client: SupabaseClient | null = null
 
 export function getSupabase(): SupabaseClient {
   if (!_client) {
-    _client = createClient(
-      process.env.SUPABASE_URL!,
-      process.env.SUPABASE_ANON_KEY!,
-    )
+    const url = process.env.SUPABASE_URL
+    const key = process.env.SUPABASE_ANON_KEY
+
+    if (!url?.startsWith('https://') || !key) {
+      throw new Error(
+        `[Supabase] Variables manquantes — SUPABASE_URL="${url}" key=${!!key}. ` +
+        'Ajoute SUPABASE_URL et SUPABASE_ANON_KEY dans Vercel → Settings → Environment Variables.'
+      )
+    }
+
+    _client = createClient(url, key)
   }
   return _client
 }
