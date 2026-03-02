@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getSupabaseAdmin } from '@/lib/supabase-admin'
 import AdminDashboard from '@/components/admin/AdminDashboard'
 
 export const dynamic = 'force-dynamic' // toujours données fraîches
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function AdminPage() {
-  const { data: leads, error } = await supabaseAdmin
+  const { data: leads, error } = await getSupabaseAdmin()
     .from('leads')
     .select('*')
     .order('created_at', { ascending: false })

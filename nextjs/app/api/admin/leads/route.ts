@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { supabaseAdmin } from '@/lib/supabase-admin'
+import { getSupabaseAdmin } from '@/lib/supabase-admin'
 
 function isAuthenticated(req: NextRequest) {
   return req.cookies.get('admin_token')?.value === process.env.ADMIN_SESSION_SECRET
@@ -16,7 +16,7 @@ export async function PATCH(req: NextRequest) {
     return NextResponse.json({ error: 'id et status requis' }, { status: 400 })
   }
 
-  const { error } = await supabaseAdmin
+  const { error } = await getSupabaseAdmin()
     .from('leads')
     .update({ status })
     .eq('id', id)
