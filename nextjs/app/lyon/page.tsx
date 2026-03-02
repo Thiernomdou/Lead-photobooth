@@ -368,7 +368,6 @@ function Prestations() {
                 <span className="text-4xl shrink-0" aria-hidden>{p.emoji}</span>
                 <div>
                   <h3 className="text-xl font-serif font-bold text-gray-900">{p.h3}</h3>
-                  <p className="text-gold-500 font-semibold text-sm mt-0.5">{p.price}</p>
                 </div>
               </div>
 
