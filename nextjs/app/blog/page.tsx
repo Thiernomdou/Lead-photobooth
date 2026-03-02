@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { buildMetadata } from '@/lib/metadata'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = buildMetadata({
   title:       'Blog Photobooth Lyon — Guides, Conseils et Inspirations',
   description: "Guides pratiques, comparatifs et idées d'animations pour votre mariage, anniversaire ou événement d'entreprise à Lyon.",
