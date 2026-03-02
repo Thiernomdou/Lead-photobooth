@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { getSupabase } from '@/lib/supabase'
 
+export const dynamic = 'force-dynamic'
+
 function getResend() {
   return new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
 }

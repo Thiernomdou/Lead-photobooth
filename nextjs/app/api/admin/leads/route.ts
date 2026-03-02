@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getSupabaseAdmin } from '@/lib/supabase-admin'
 
+export const dynamic = 'force-dynamic'
+
 function isAuthenticated(req: NextRequest) {
   return req.cookies.get('admin_token')?.value === process.env.ADMIN_SESSION_SECRET
 }
