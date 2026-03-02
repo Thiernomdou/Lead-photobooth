@@ -94,10 +94,6 @@ export default function BlogPage() {
                     alt={a.imgAlt}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
-                    onError={(e) => {
-                      const el = e.currentTarget as HTMLImageElement
-                      el.style.display = 'none'
-                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
