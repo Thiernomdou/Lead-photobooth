@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { supabase } from '@/lib/supabase'
+import { getSupabase } from '@/lib/supabase'
 
 function getResend() {
   return new Resend(process.env.RESEND_API_KEY ?? 'placeholder')
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     const optionsStr = Array.isArray(options) ? options.join(', ') : (options ?? '—')
 
     // ── 1. Enregistrement Supabase ──────────────────────────────────────────
-    const { error: dbError } = await supabase.from('leads').insert({
+    const { error: dbError } = await getSupabase().from('leads').insert({
       event_type:  eventType  ?? null,
       date:        date       ?? null,
       venue:       venue      ?? null,
