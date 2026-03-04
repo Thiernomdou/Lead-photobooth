@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { getSupabase } from '@/lib/supabase'
+import { getSupabaseAdmin } from '@/lib/supabase-admin'
 
 export const dynamic = 'force-dynamic'
 
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest) {
     const optionsStr = Array.isArray(options) ? options.join(', ') : (options ?? '—')
 
     // ── 1. Enregistrement Supabase ──────────────────────────────────────────
-    const { error: dbError } = await getSupabase().from('leads').insert({
+    const { error: dbError } = await getSupabaseAdmin().from('leads').insert({
       event_type:  eventType  ?? null,
       date:        date       ?? null,
       venue:       venue      ?? null,
