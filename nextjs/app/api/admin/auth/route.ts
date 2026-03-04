@@ -1,39 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { pbkdf2Sync, timingSafeEqual } from 'crypto'
+import { timingSafeEqual } from 'crypto'
 
-function verifyPassword(entered: string): boolean {
-  const salt           = process.env.ADMIN_SALT           ?? ''
-  const storedHashHex  = process.env.ADMIN_PASSWORD_HASH  ?? ''
-
-  if (!salt || !storedHashHex) return false
-
-  const enteredHash = pbkdf2Sync(entered, salt, 100000, 64, 'sha512')
-  const storedHash  = Buffer.from(storedHashHex, 'hex')
-
-  if (enteredHash.length !== storedHash.length) return false
-
-  // Comparaison en temps constant — protège contre les timing attacks
-  return timingSafeEqual(enteredHash, storedHash)
+function safeCompare(a: string, b: string): boolean {
+  try {
+    const ba = Buffer.from(a, 'utf8')
+    const bb = Buffer.from(b, 'utf8')
+    if (ba.length !== bb.length) return false
+    return timingSafeEqual(ba, bb)
+  } catch {
+    return false
+  }
 }
 
 export async function POST(req: NextRequest) {
   const { login, password } = await req.json()
 
-  const validLogin = process.env.ADMIN_LOGIN ?? ''
-
-  console.log('[auth] login reçu:', JSON.stringify(login))
-  console.log('[auth] login attendu:', JSON.stringify(validLogin))
-  console.log('[auth] SALT défini:', !!process.env.ADMIN_SALT)
-  console.log('[auth] HASH défini:', !!process.env.ADMIN_PASSWORD_HASH)
-  console.log('[auth] login match:', login?.trim().toLowerCase() === validLogin.trim().toLowerCase())
-  console.log('[auth] password match:', verifyPassword(password))
+  const validLogin    = process.env.ADMIN_LOGIN    ?? ''
+  const validPassword = process.env.ADMIN_PASSWORD ?? ''
 
   if (
-    !login || !password ||
-    login.trim().toLowerCase() !== validLogin.trim().toLowerCase() ||
-    !verifyPassword(password)
+    !login || !password || !validLogin || !validPassword ||
+    !safeCompare(login.trim(), validLogin.trim()) ||
+    !safeCompare(password, validPassword)
   ) {
-    // Délai fixe pour éviter l'énumération par timing
     await new Promise(r => setTimeout(r, 500))
     return NextResponse.json({ error: 'Identifiants incorrects.' }, { status: 401 })
   }
