@@ -1,5 +1,5 @@
 {
-  "installCommand": "npm install && npm --prefix nextjs install",
+  "installCommand": "npm --prefix nextjs install",
   "buildCommand": "rm -rf nextjs/.next && npm --prefix nextjs run build",
   "outputDirectory": "nextjs/.next"
 }

@@ -5,7 +5,5 @@
     "dev": "npm --prefix nextjs run dev",
     "build": "npm --prefix nextjs run build"
   },
-  "dependencies": {
-    "next": "^15.2.0"
-  }
+  "dependencies": {}
 }
