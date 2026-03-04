@@ -54,8 +54,8 @@ export async function POST(req: NextRequest) {
     const adminTo = process.env.CONTACT_EMAIL ?? 'contact.kivio@gmail.com'
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://photobooth-evenement.fr'
 
-    // ── 2. Emails envoyés en parallèle ──────────────────────────────────────
-    await Promise.all([
+    // ── 2. Emails envoyés en parallèle (non-bloquants) ──────────────────────
+    Promise.all([
 
       // 2a. Notification interne (admin)
       resend.emails.send({
@@ -205,7 +205,9 @@ export async function POST(req: NextRequest) {
         `,
       }),
 
-    ])
+    ]).catch((emailErr) => {
+      console.error('[devis] email error (non-bloquant):', emailErr)
+    })
 
     return NextResponse.json({ ok: true })
   } catch (err) {
