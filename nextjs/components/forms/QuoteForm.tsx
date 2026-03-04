@@ -1,18 +1,5 @@
 'use client'
 
-/**
- * QuoteForm — Formulaire multi-step de simulation de devis
- * ─────────────────────────────────────────────────────────
- * Étape 1 : Votre événement
- * Étape 2 : Votre formule
- * Étape 3 : Vos coordonnées + récapitulatif + envoi Formspree
- *
- * ⚠️  Remplacez FORMSPREE_ID par votre ID formulaire :
- *     1. Créez un compte sur https://formspree.io (gratuit)
- *     2. Créez un nouveau formulaire → copiez l'ID (ex : "xyzabcde")
- *     3. Remplacez la valeur ci-dessous
- */
-
 import { useState, useMemo } from 'react'
 
 const API_ENDPOINT = '/api/devis'
@@ -32,32 +19,32 @@ interface S3 { prenom: string; nom: string; email: string; telephone: string; so
 
 // ─── Constantes ────────────────────────────────────────────────────────────
 
-const EVENT_TYPES: { label: EventType; emoji: string }[] = [
-  { label: 'Mariage',            emoji: '💍' },
-  { label: 'Anniversaire',       emoji: '🎂' },
-  { label: 'Soirée entreprise',  emoji: '🏢' },
-  { label: 'Remise de diplômes', emoji: '🎓' },
-  { label: 'Autre',              emoji: '🎉' },
+const EVENT_TYPES: { label: EventType }[] = [
+  { label: 'Mariage'            },
+  { label: 'Anniversaire'       },
+  { label: 'Soirée entreprise'  },
+  { label: 'Remise de diplômes' },
+  { label: 'Autre'              },
 ]
 
-const BOOTH_MODELS: { label: BoothModel; emoji: string; desc: string }[] = [
-  { label: 'Borne Classique', emoji: '📸', desc: 'Borne photo HD, impressions illimitées, fond inclus' },
-  { label: 'Borne Premium',   emoji: '✨', desc: 'Borne LED, GIFs animés, fond personnalisé, animateur dédié' },
-  { label: 'Vidéo 360°',      emoji: '🌀', desc: 'Vidéo booth 360° dernière génération, effets slow-motion' },
+const BOOTH_MODELS: { label: BoothModel; desc: string; tag: string }[] = [
+  { label: 'Borne Classique', tag: 'Essentiel',   desc: 'Photo HD · Impressions illimitées · Fond inclus' },
+  { label: 'Borne Premium',   tag: 'Populaire',   desc: 'LED · GIFs animés · Fond personnalisé · Animateur' },
+  { label: 'Vidéo 360°',      tag: 'Spectaculaire', desc: 'Vidéo 360° · Slow-motion · Partage instantané' },
 ]
 
-const OPTIONS_LIST: { label: string; extra: string }[] = [
-  { label: 'Impression photos instantanée',  extra: 'inclus'  },
-  { label: 'Fond personnalisé',              extra: 'inclus'  },
-  { label: 'Livre d\'or digital',            extra: 'inclus'  },
-  { label: 'Animateur dédié',                extra: 'inclus'  },
-  { label: 'Partage réseaux sociaux',        extra: 'inclus'  },
+const OPTIONS_LIST = [
+  'Impression photos instantanée',
+  'Fond personnalisé',
+  "Livre d'or digital",
+  'Animateur dédié',
+  'Partage réseaux sociaux',
 ]
 
-const BUDGETS: Budget[]      = ['Je ne sais pas encore', 'Moins de 500€', '500-800€', 'Plus de 800€']
+const BUDGETS: Budget[]          = ['Je ne sais pas encore', 'Moins de 500€', '500-800€', 'Plus de 800€']
 const GUEST_COUNTS: GuestCount[] = ['Moins de 50', '50-100', '100-200', 'Plus de 200']
-const DURATIONS: Duration[]   = ['2h', '3h', '4h', 'Soirée complète']
-const SOURCES                 = ['Google', "Recommandation d'un proche", 'Réseaux sociaux', 'Autre']
+const DURATIONS: Duration[]      = ['2h', '3h', '4h', 'Soirée complète']
+const SOURCES                    = ['Google', "Recommandation d'un proche", 'Réseaux sociaux', 'Autre']
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
@@ -72,38 +59,56 @@ function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
 }
 
-// ─── Progress Bar ──────────────────────────────────────────────────────────
+// ─── Progress Steps ────────────────────────────────────────────────────────
 
-function ProgressBar({ step }: { step: 1 | 2 | 3 }) {
-  const labels = ['Votre événement', 'Votre formule', 'Vos coordonnées']
-  const pct    = step === 1 ? 33 : step === 2 ? 66 : 100
+function StepBar({ step }: { step: 1 | 2 | 3 }) {
+  const steps = [
+    { n: 1, label: 'Événement' },
+    { n: 2, label: 'Formule'   },
+    { n: 3, label: 'Contact'   },
+  ]
   return (
-    <div className="mb-8">
-      <div className="flex justify-between mb-2">
-        {labels.map((label, i) => (
-          <span key={label} className={`text-xs font-semibold ${i + 1 <= step ? 'text-gold-500' : 'text-gray-400'}`}>
-            {label}
-          </span>
-        ))}
-      </div>
-      <div className="h-1.5 bg-gray-200 rounded-full overflow-hidden">
-        <div className="h-full bg-gold-400 transition-all duration-500" style={{ width: `${pct}%` }} />
-      </div>
-      <p className="text-right text-xs text-gray-400 mt-1">Étape {step} / 3</p>
+    <div className="flex items-center mb-10">
+      {steps.map(({ n, label }, i) => (
+        <div key={n} className="flex items-center flex-1 last:flex-none">
+          <div className="flex flex-col items-center gap-1.5">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 ${
+              n < step  ? 'bg-gold-400 text-black' :
+              n === step ? 'bg-black text-white ring-2 ring-gold-400 ring-offset-2' :
+                           'bg-gray-100 text-gray-400'
+            }`}>
+              {n < step ? (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                </svg>
+              ) : n}
+            </div>
+            <span className={`text-xs font-medium hidden sm:block ${
+              n <= step ? 'text-gray-800' : 'text-gray-400'
+            }`}>{label}</span>
+          </div>
+          {i < steps.length - 1 && (
+            <div className="flex-1 h-px mx-3 mb-4 transition-all duration-500" style={{
+              background: step > n ? '#C9A84C' : '#e5e7eb'
+            }} />
+          )}
+        </div>
+      ))}
     </div>
   )
 }
 
-// ─── Boutons partagés ──────────────────────────────────────────────────────
+// ─── Chip sélectionnable ───────────────────────────────────────────────────
 
-function BtnNext({ disabled, onClick, label = 'Étape suivante →' }: { disabled: boolean; onClick: () => void; label?: string }) {
+function Chip({ label, selected, onClick }: { label: string; selected: boolean; onClick: () => void }) {
   return (
     <button
       type="button"
-      disabled={disabled}
       onClick={onClick}
-      className={`w-full py-3.5 font-semibold text-sm tracking-wide transition-all ${
-        disabled ? 'bg-gray-200 text-gray-400 cursor-not-allowed' : 'btn-primary'
+      className={`px-4 py-2.5 rounded-full text-sm font-medium border transition-all duration-200 ${
+        selected
+          ? 'bg-black text-white border-black shadow-sm'
+          : 'bg-white text-gray-600 border-gray-200 hover:border-gray-400 hover:text-gray-900'
       }`}
     >
       {label}
@@ -111,17 +116,20 @@ function BtnNext({ disabled, onClick, label = 'Étape suivante →' }: { disable
   )
 }
 
-function BtnBack({ onClick }: { onClick: () => void }) {
+// ─── Input field ───────────────────────────────────────────────────────────
+
+function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      className="flex-1 py-3.5 border-2 border-gray-300 text-gray-700 font-semibold text-sm hover:border-gray-400 transition-colors"
-    >
-      ← Retour
-    </button>
+    <div className="space-y-1.5">
+      <label className="block text-sm font-medium text-gray-700">
+        {label}{required && <span className="text-gold-500 ml-0.5">*</span>}
+      </label>
+      {children}
+    </div>
   )
 }
+
+const inputCls = "w-full px-4 py-3 rounded-lg border border-gray-200 bg-gray-50 text-gray-900 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-gray-400 focus:bg-white transition-all"
 
 // ─── Composant principal ───────────────────────────────────────────────────
 
@@ -160,7 +168,7 @@ export default function QuoteForm() {
       setStatus('success')
     } catch {
       setStatus('error')
-      setErrMsg('Une erreur est survenue. Veuillez réessayer ou nous contacter directement par téléphone.')
+      setErrMsg('Une erreur est survenue. Veuillez réessayer ou nous appeler directement.')
     }
   }
 
@@ -168,41 +176,29 @@ export default function QuoteForm() {
 
   if (status === 'success') {
     return (
-      <div className="py-12 px-4">
-        {/* Check vert */}
-        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-50 border-2 border-green-200 mb-6 mx-auto">
-          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="py-10 text-center">
+        <div className="w-14 h-14 rounded-full bg-black flex items-center justify-center mx-auto mb-6">
+          <svg className="w-7 h-7 text-gold-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-
-        <h3 className="text-2xl font-serif font-bold text-gray-900 text-center mb-4">
-          Votre demande a bien été reçue ✓
+        <h3 className="text-2xl font-serif font-bold text-gray-900 mb-3">
+          Demande reçue
         </h3>
-
-        <p className="text-gray-600 text-center leading-relaxed mb-2">
-          Merci {s3.prenom}&nbsp;! Votre devis personnalisé est en cours de préparation.
+        <p className="text-gray-500 leading-relaxed mb-1">
+          Merci {s3.prenom}. Votre devis est en préparation.
         </p>
-        <p className="text-gray-600 text-center leading-relaxed mb-8">
-          Vous le recevrez sous 24h à{' '}
-          <span className="font-medium text-gray-900">{s3.email}</span>.
-          Notre équipe peut aussi vous rappeler directement si vous préférez.
+        <p className="text-gray-500 leading-relaxed mb-8">
+          Vous le recevrez sous 24h à <span className="font-medium text-gray-900">{s3.email}</span>.
         </p>
-
         <div className="border-t border-gray-100 pt-8">
-          <a
-            href="tel:+33665420793"
-            className="btn-primary w-full justify-center text-base"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          <a href="tel:+33665420793" className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-full text-sm font-semibold hover:bg-gray-800 transition-colors">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
-            Recevoir un appel rapidement → 06 65 42 07 93
+            Nous appeler — 06 65 42 07 93
           </a>
-          <p className="text-center text-xs text-gray-400 mt-3">
-            Du lundi au samedi, 9h–19h
-          </p>
+          <p className="text-xs text-gray-400 mt-3">Lun–Sam · 9h–19h</p>
         </div>
       </div>
     )
@@ -210,318 +206,239 @@ export default function QuoteForm() {
 
   return (
     <form onSubmit={handleSubmit} noValidate>
-      <ProgressBar step={step} />
+      <StepBar step={step} />
 
-      {/* ══ Étape 1 : Votre événement ══════════════════════════════════════ */}
+      {/* ══ Étape 1 ══════════════════════════════════════════════════════════ */}
       {step === 1 && (
-        <div className="space-y-6">
+        <div className="space-y-7">
 
-          {/* Type d'événement */}
-          <div>
-            <p className="text-sm font-semibold text-gray-700 mb-3">
-              Type d&apos;événement <span className="text-gold-400">*</span>
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
-              {EVENT_TYPES.map(({ label, emoji }) => (
-                <button
+          <Field label="Type d'événement" required>
+            <div className="flex flex-wrap gap-2 pt-0.5">
+              {EVENT_TYPES.map(({ label }) => (
+                <Chip
                   key={label}
-                  type="button"
+                  label={label}
+                  selected={s1.eventType === label}
                   onClick={() => setS1(p => ({ ...p, eventType: label }))}
-                  className={`flex flex-col items-center gap-1.5 py-4 px-2 border-2 transition-all text-center ${
-                    s1.eventType === label ? 'border-gold-400 bg-gold-400/5' : 'border-gray-200 hover:border-gray-300'
-                  }`}
-                >
-                  <span className="text-2xl" aria-hidden>{emoji}</span>
-                  <span className="text-xs font-medium text-gray-700 leading-tight">{label}</span>
-                </button>
+                />
               ))}
             </div>
-          </div>
+          </Field>
 
-          {/* Date + Lieu */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Date de l&apos;événement <span className="text-gold-400">*</span>
-              </label>
+            <Field label="Date de l'événement" required>
               <input
                 type="date" min={minDate} value={s1.date}
                 onChange={e => setS1(p => ({ ...p, date: e.target.value }))}
-                className="input-field"
+                className={inputCls}
               />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Lieu de l&apos;événement
-              </label>
+            </Field>
+            <Field label="Lieu">
               <input
-                type="text" placeholder="Salle, adresse ou quartier"
+                type="text" placeholder="Salle, ville ou quartier"
                 value={s1.venue}
                 onChange={e => setS1(p => ({ ...p, venue: e.target.value }))}
-                className="input-field"
+                className={inputCls}
               />
-            </div>
+            </Field>
           </div>
 
-          {/* Nombre d'invités */}
-          <div>
-            <p className="text-sm font-semibold text-gray-700 mb-3">Nombre d&apos;invités estimé</p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <Field label="Nombre d'invités estimé">
+            <div className="flex flex-wrap gap-2 pt-0.5">
               {GUEST_COUNTS.map(g => (
-                <button
-                  key={g} type="button"
-                  onClick={() => setS1(p => ({ ...p, guestCount: g }))}
-                  className={`py-2.5 px-3 border-2 text-sm font-medium transition-all ${
-                    s1.guestCount === g
-                      ? 'border-gold-400 bg-gold-400/5 text-gray-900'
-                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                  }`}
-                >
-                  {g}
-                </button>
+                <Chip key={g} label={g} selected={s1.guestCount === g} onClick={() => setS1(p => ({ ...p, guestCount: g }))} />
               ))}
             </div>
-          </div>
+          </Field>
 
-          {/* Durée */}
-          <div>
-            <p className="text-sm font-semibold text-gray-700 mb-3">Durée souhaitée</p>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <Field label="Durée souhaitée">
+            <div className="flex flex-wrap gap-2 pt-0.5">
               {DURATIONS.map(d => (
-                <button
-                  key={d} type="button"
-                  onClick={() => setS1(p => ({ ...p, duration: d }))}
-                  className={`py-2.5 px-3 border-2 text-sm font-medium transition-all ${
-                    s1.duration === d
-                      ? 'border-gold-400 bg-gold-400/5 text-gray-900'
-                      : 'border-gray-200 text-gray-600 hover:border-gray-300'
-                  }`}
-                >
-                  {d}
-                </button>
+                <Chip key={d} label={d} selected={s1.duration === d} onClick={() => setS1(p => ({ ...p, duration: d }))} />
               ))}
             </div>
-          </div>
+          </Field>
 
-          <div className="space-y-2">
-            <BtnNext disabled={!step1Valid} onClick={() => setStep(2)} />
+          <div className="pt-2 space-y-2">
+            <button
+              type="button"
+              disabled={!step1Valid}
+              onClick={() => setStep(2)}
+              className={`w-full py-3.5 rounded-xl text-sm font-semibold tracking-wide transition-all ${
+                step1Valid ? 'bg-black text-white hover:bg-gray-800' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+              }`}
+            >
+              Continuer
+            </button>
             {!step1Valid && (
-              <p className="text-xs text-gray-400 text-center">
-                Sélectionnez un type d&apos;événement et une date pour continuer
-              </p>
+              <p className="text-xs text-gray-400 text-center">Sélectionnez un type et une date pour continuer</p>
             )}
           </div>
         </div>
       )}
 
-      {/* ══ Étape 2 : Votre formule ════════════════════════════════════════ */}
+      {/* ══ Étape 2 ══════════════════════════════════════════════════════════ */}
       {step === 2 && (
-        <div className="space-y-6">
+        <div className="space-y-7">
 
-          {/* Modèle de photobooth */}
-          <div>
-            <p className="text-sm font-semibold text-gray-700 mb-3">
-              Modèle de photobooth <span className="text-gold-400">*</span>
-            </p>
-            <div className="space-y-3">
-              {BOOTH_MODELS.map(({ label, emoji, desc }) => (
+          <Field label="Modèle de photobooth" required>
+            <div className="space-y-2 pt-0.5">
+              {BOOTH_MODELS.map(({ label, desc, tag }) => (
                 <button
                   key={label} type="button"
                   onClick={() => setS2(p => ({ ...p, model: label }))}
-                  className={`w-full flex items-center gap-4 p-4 border-2 text-left transition-all ${
-                    s2.model === label ? 'border-gold-400 bg-gold-400/5' : 'border-gray-200 hover:border-gray-300'
+                  className={`w-full flex items-center justify-between px-4 py-3.5 rounded-xl border text-left transition-all duration-200 ${
+                    s2.model === label
+                      ? 'border-black bg-gray-50 shadow-sm'
+                      : 'border-gray-200 hover:border-gray-300 bg-white'
                   }`}
                 >
-                  <span className="text-3xl shrink-0" aria-hidden>{emoji}</span>
-                  <div className="min-w-0">
+                  <div>
                     <p className="font-semibold text-gray-900 text-sm">{label}</p>
-                    <p className="text-xs text-gray-500 mt-0.5 leading-snug">{desc}</p>
+                    <p className="text-xs text-gray-500 mt-0.5">{desc}</p>
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0 ml-4">
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
+                      tag === 'Populaire' ? 'bg-gold-400/20 text-gold-700' : 'bg-gray-100 text-gray-500'
+                    }`}>{tag}</span>
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all ${
+                      s2.model === label ? 'border-black bg-black' : 'border-gray-300'
+                    }`}>
+                      {s2.model === label && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
+                    </div>
                   </div>
                 </button>
               ))}
             </div>
-          </div>
+          </Field>
 
-          {/* Options */}
-          <div>
-            <p className="text-sm font-semibold text-gray-700 mb-3">Options souhaitées</p>
-            <div className="space-y-2">
-              {OPTIONS_LIST.map(({ label, extra }) => (
-                <label
-                  key={label}
-                  className="flex items-center gap-3 p-3 border border-gray-200 cursor-pointer hover:border-gray-300 transition-colors"
-                >
-                  <input
-                    type="checkbox"
-                    checked={s2.options.includes(label)}
-                    onChange={() => toggleOption(label)}
-                    className="w-4 h-4 accent-amber-500 shrink-0"
-                  />
-                  <span className="text-sm text-gray-700 flex-1">{label}</span>
-                  {extra === 'inclus' && (
-                    <span className="text-xs font-semibold text-green-600 shrink-0">inclus</span>
-                  )}
-                </label>
+          <Field label="Options souhaitées">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-0.5">
+              {OPTIONS_LIST.map((label) => {
+                const checked = s2.options.includes(label)
+                return (
+                  <button
+                    key={label} type="button"
+                    onClick={() => toggleOption(label)}
+                    className={`flex items-center gap-2.5 px-3.5 py-2.5 rounded-lg border text-left text-sm transition-all duration-200 ${
+                      checked
+                        ? 'border-black bg-gray-50 text-gray-900'
+                        : 'border-gray-200 text-gray-600 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className={`w-4 h-4 rounded border-2 flex items-center justify-center shrink-0 transition-all ${
+                      checked ? 'bg-black border-black' : 'border-gray-300'
+                    }`}>
+                      {checked && (
+                        <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className="font-medium leading-tight">{label}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </Field>
+
+          <Field label="Budget approximatif" required>
+            <div className="flex flex-wrap gap-2 pt-0.5">
+              {BUDGETS.map(b => (
+                <Chip key={b} label={b} selected={s2.budget === b} onClick={() => setS2(p => ({ ...p, budget: b }))} />
               ))}
             </div>
-          </div>
+          </Field>
 
-          {/* Budget */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-              Votre budget approximatif <span className="text-gold-400">*</span>
-            </label>
-            <select
-              value={s2.budget}
-              onChange={e => setS2(p => ({ ...p, budget: e.target.value as Budget }))}
-              className="input-field"
-            >
-              <option value="">Sélectionner…</option>
-              {BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}
-            </select>
-          </div>
-
-          <div className="flex gap-3">
-            <BtnBack onClick={() => setStep(1)} />
+          <div className="flex gap-3 pt-2">
+            <button type="button" onClick={() => setStep(1)}
+              className="flex-1 py-3.5 rounded-xl border-2 border-gray-200 text-gray-700 text-sm font-semibold hover:border-gray-400 transition-colors">
+              Retour
+            </button>
             <button
               type="button"
               disabled={!step2Valid}
               onClick={() => setStep(3)}
-              className={`flex-[2] py-3.5 font-semibold text-sm tracking-wide transition-all ${
-                step2Valid ? 'btn-primary' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              className={`flex-[2] py-3.5 rounded-xl text-sm font-semibold tracking-wide transition-all ${
+                step2Valid ? 'bg-black text-white hover:bg-gray-800' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
               }`}
             >
-              Étape suivante →
+              Continuer
             </button>
           </div>
         </div>
       )}
 
-      {/* ══ Étape 3 : Vos coordonnées ══════════════════════════════════════ */}
+      {/* ══ Étape 3 ══════════════════════════════════════════════════════════ */}
       {step === 3 && (
         <div className="space-y-5">
 
           {/* Récapitulatif */}
-          <div className="bg-gray-50 border border-gray-200 p-4 text-sm space-y-1.5">
-            <p className="font-semibold text-gray-900 text-xs uppercase tracking-widest mb-2 text-gold-600">
-              Récapitulatif
-            </p>
+          <div className="rounded-xl bg-gray-50 border border-gray-100 p-4 text-sm space-y-1">
+            <p className="text-xs font-bold uppercase tracking-widest text-gold-600 mb-2">Récapitulatif</p>
             <p className="text-gray-700">
               <span className="font-medium">Événement :</span>{' '}
-              {s1.eventType || '—'}
-              {s1.date ? ` le ${formatDate(s1.date)}` : ''}
-              {s1.venue ? ` — ${s1.venue}` : ''}
+              {s1.eventType || '—'}{s1.date ? ` · ${formatDate(s1.date)}` : ''}{s1.venue ? ` · ${s1.venue}` : ''}
             </p>
-            {s1.guestCount && (
-              <p className="text-gray-700">
-                <span className="font-medium">Invités :</span> {s1.guestCount}
-              </p>
-            )}
-            {s1.duration && (
-              <p className="text-gray-700">
-                <span className="font-medium">Durée :</span> {s1.duration}
-              </p>
-            )}
-            <p className="text-gray-700">
-              <span className="font-medium">Formule :</span> {s2.model || '—'}
-            </p>
+            {s1.guestCount && <p className="text-gray-700"><span className="font-medium">Invités :</span> {s1.guestCount}</p>}
+            {s1.duration   && <p className="text-gray-700"><span className="font-medium">Durée :</span> {s1.duration}</p>}
+            <p className="text-gray-700"><span className="font-medium">Formule :</span> {s2.model || '—'}</p>
           </div>
 
-          {/* Prénom + Nom */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Prénom <span className="text-gold-400">*</span>
-              </label>
-              <input
-                type="text" placeholder="Marie"
-                value={s3.prenom}
-                onChange={e => setS3(p => ({ ...p, prenom: e.target.value }))}
-                className="input-field"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Nom <span className="text-gold-400">*</span>
-              </label>
-              <input
-                type="text" placeholder="Dupont"
-                value={s3.nom}
-                onChange={e => setS3(p => ({ ...p, nom: e.target.value }))}
-                className="input-field"
-              />
-            </div>
+            <Field label="Prénom" required>
+              <input type="text" placeholder="Marie" value={s3.prenom}
+                onChange={e => setS3(p => ({ ...p, prenom: e.target.value }))} className={inputCls} />
+            </Field>
+            <Field label="Nom" required>
+              <input type="text" placeholder="Dupont" value={s3.nom}
+                onChange={e => setS3(p => ({ ...p, nom: e.target.value }))} className={inputCls} />
+            </Field>
           </div>
 
-          {/* Email + Téléphone */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Email <span className="text-gold-400">*</span>
-              </label>
-              <input
-                type="email" placeholder="marie@exemple.fr"
-                value={s3.email}
-                onChange={e => setS3(p => ({ ...p, email: e.target.value }))}
-                className="input-field"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-                Téléphone <span className="text-gold-400">*</span>
-              </label>
-              <input
-                type="tel" placeholder="06 00 00 00 00"
-                value={s3.telephone}
-                onChange={e => setS3(p => ({ ...p, telephone: e.target.value }))}
-                className="input-field"
-              />
-            </div>
+            <Field label="Email" required>
+              <input type="email" placeholder="marie@exemple.fr" value={s3.email}
+                onChange={e => setS3(p => ({ ...p, email: e.target.value }))} className={inputCls} />
+            </Field>
+            <Field label="Téléphone" required>
+              <input type="tel" placeholder="06 00 00 00 00" value={s3.telephone}
+                onChange={e => setS3(p => ({ ...p, telephone: e.target.value }))} className={inputCls} />
+            </Field>
           </div>
 
-          {/* Source */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-              Comment nous avez-vous trouvé ?
-            </label>
-            <select
-              value={s3.source}
-              onChange={e => setS3(p => ({ ...p, source: e.target.value }))}
-              className="input-field"
-            >
+          <Field label="Comment nous avez-vous trouvé ?">
+            <select value={s3.source} onChange={e => setS3(p => ({ ...p, source: e.target.value }))} className={inputCls}>
               <option value="">Sélectionner…</option>
               {SOURCES.map(s => <option key={s} value={s}>{s}</option>)}
             </select>
-          </div>
+          </Field>
 
-          {/* Message */}
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1.5">
-              Message complémentaire{' '}
-              <span className="text-gray-400 font-normal">(optionnel)</span>
-            </label>
-            <textarea
-              rows={3}
-              placeholder="Précisions sur votre événement, demandes particulières…"
-              value={s3.message}
-              onChange={e => setS3(p => ({ ...p, message: e.target.value }))}
-              className="input-field resize-none"
-            />
-          </div>
+          <Field label="Message complémentaire">
+            <textarea rows={3} placeholder="Précisions, demandes particulières…"
+              value={s3.message} onChange={e => setS3(p => ({ ...p, message: e.target.value }))}
+              className={`${inputCls} resize-none`} />
+          </Field>
 
           {status === 'error' && (
-            <div role="alert" className="bg-red-50 border border-red-200 px-4 py-3 text-red-700 text-sm">
+            <div role="alert" className="flex items-start gap-3 bg-red-50 border border-red-100 rounded-xl px-4 py-3 text-red-600 text-sm">
+              <svg className="w-4 h-4 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
               {errMsg}
             </div>
           )}
 
-          <div className="flex gap-3">
-            <BtnBack onClick={() => setStep(2)} />
+          <div className="flex gap-3 pt-2">
+            <button type="button" onClick={() => setStep(2)}
+              className="flex-1 py-3.5 rounded-xl border-2 border-gray-200 text-gray-700 text-sm font-semibold hover:border-gray-400 transition-colors">
+              Retour
+            </button>
             <button
               type="submit"
               disabled={!step3Valid || status === 'loading'}
-              className={`flex-[2] py-3.5 font-semibold text-sm tracking-wide transition-all flex items-center justify-center gap-2 ${
-                step3Valid && status !== 'loading' ? 'btn-primary' : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+              className={`flex-[2] py-3.5 rounded-xl text-sm font-semibold tracking-wide transition-all flex items-center justify-center gap-2 ${
+                step3Valid && status !== 'loading' ? 'bg-black text-white hover:bg-gray-800' : 'bg-gray-100 text-gray-400 cursor-not-allowed'
               }`}
             >
               {status === 'loading' ? (
@@ -532,15 +449,11 @@ export default function QuoteForm() {
                   </svg>
                   Envoi en cours…
                 </>
-              ) : (
-                'Recevoir mon devis personnalisé →'
-              )}
+              ) : 'Recevoir mon devis →'}
             </button>
           </div>
 
-          <p className="text-xs text-gray-400 text-center">
-            Réponse garantie sous 24h · Vos données ne sont jamais revendues
-          </p>
+          <p className="text-xs text-gray-400 text-center">Réponse sous 24h · Données confidentielles</p>
         </div>
       )}
     </form>
