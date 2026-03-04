@@ -1,5 +1,6 @@
 import type { Metadata }  from 'next'
 import Link               from 'next/link'
+import Image              from 'next/image'
 import QuoteForm          from '@/components/forms/QuoteForm'
 import FAQAccordion       from '@/components/sections/FAQAccordion'
 import SchemaOrg          from '@/components/seo/SchemaOrg'
@@ -181,41 +182,62 @@ function MapPinIcon() {
 function Hero() {
   return (
     <section className="bg-black pt-32 pb-20 section-padding">
-      <div className="container-max text-center">
-        <p className="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-4">
-          Lyon &amp; Agglomération · Animateur inclus · Impression instantanée
-        </p>
+      <div className="container-max">
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
 
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white leading-tight mb-6">
-          Location Photobooth Lyon<br />
-          <span className="text-gold-400">Devis Gratuit en 24h</span>
-        </h1>
+          {/* Texte — colonne gauche */}
+          <div className="flex-1 text-center lg:text-left">
+            <p className="text-gold-400 text-xs font-semibold tracking-widest uppercase mb-4">
+              Lyon &amp; Agglomération · Animateur inclus · Impression instantanée
+            </p>
 
-        <p className="text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-          Animez vos mariages, anniversaires et soirées d&apos;entreprise avec nos photobooths premium.
-          Livraison et installation incluses dans toute l&apos;agglomération lyonnaise.
-        </p>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-serif font-bold text-white leading-tight mb-6">
+              Location Photobooth Lyon<br />
+              <span className="text-gold-400">Devis Gratuit en 24h</span>
+            </h1>
 
-        {/* Badges de réassurance */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {[
-            'Livraison & installation incluse',
-            'Personnalisation offerte',
-            'Devis gratuit sous 24h',
-          ].map((badge) => (
-            <div key={badge} className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2">
-              <CheckIcon className="w-4 h-4 text-gold-400 shrink-0" />
-              <span className="text-white text-sm font-medium">{badge}</span>
+            <p className="text-gray-300 text-lg md:text-xl leading-relaxed mb-10">
+              Animez vos mariages, anniversaires et soirées d&apos;entreprise avec nos photobooths premium.
+              Livraison et installation incluses dans toute l&apos;agglomération lyonnaise.
+            </p>
+
+            {/* Badges de réassurance */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-12">
+              {[
+                'Livraison & installation incluse',
+                'Personnalisation offerte',
+                'Devis gratuit sous 24h',
+              ].map((badge) => (
+                <div key={badge} className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2">
+                  <CheckIcon className="w-4 h-4 text-gold-400 shrink-0" />
+                  <span className="text-white text-sm font-medium">{badge}</span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
-        <a
-          href="#devis"
-          className="inline-block btn-primary text-base px-8 py-4"
-        >
-          Configurer mon photobooth →
-        </a>
+            <a
+              href="#devis"
+              className="inline-block btn-primary text-base px-8 py-4"
+            >
+              Configurer mon photobooth →
+            </a>
+          </div>
+
+          {/* Image — colonne droite */}
+          <div className="flex-1 w-full max-w-lg lg:max-w-none">
+            <div className="relative rounded-lg overflow-hidden shadow-2xl">
+              <Image
+                src="/images/hero-photobooth.png"
+                alt="Groupe de personnes s'amusant avec un photobooth lors d'un événement à Lyon"
+                width={700}
+                height={520}
+                className="w-full h-auto object-cover"
+                priority
+              />
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   )
